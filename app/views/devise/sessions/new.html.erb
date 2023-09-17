@@ -1,0 +1,17 @@
+<div class="main">
+  <div class="login">
+    <h1>ログイン</h1>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.text_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", required: "required" %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", required: "required" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "GO", class: "btn btn-primary btn-block btn-large" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
