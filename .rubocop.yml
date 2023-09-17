@@ -7,3 +7,9 @@ require:
 
 AllCops:
   NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
