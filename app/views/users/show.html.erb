@@ -1,0 +1,18 @@
+<div class="main-container text-center myprofile">
+  <% if @user.avatar.present? %>
+    <img src="<%= @user.avatar.url %>" alt="<%= @user.username %>'s Image" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px;">
+  <% end %>
+  <h1 class="display-3" style="color: #F5F5F5;"><%= @user.username %></h1>
+  <p class="lead" style="font-size: 2em; color: #F5F5F5;">Email: <%= @user.email %></p>
+  <p class="lead" style="font-size: 2em; color: #F5F5F5;">Password: *********
+    <%= link_to edit_user_registration_path do %>
+      <i class="fas fa-edit ml-2" style="color: darkgrey;"></i>
+    <% end %>
+  </p>
+  <div class="mt-2">
+    <%= button_to "アカウントを削除", registration_path(current_user),
+          data: { confirm: "本当に削除して良いですか?", turbo_confirm: "Are you sure?" },
+          method: :delete,
+          class: "btn btn-sm w-auto" %>
+  </div>
+</div>
