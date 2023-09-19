@@ -38,3 +38,9 @@
 .nav-item:hover > .nav-link {
   color: white !important;
 }
+
+.user-avatar {
+  border-radius: 65%;
+  width: 200px;
+  height: 200px;
+}

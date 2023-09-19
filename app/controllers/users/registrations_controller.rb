@@ -4,6 +4,7 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     before_action :configure_sign_up_params, only: [:create]
     before_action :configure_account_update_params, only: [:update]
+    before_action :configure_permitted_parameters, if: :devise_controller?
 
     # GET /resource/sign_up
     # def new
@@ -78,6 +79,10 @@ module Users
         cleaned_params = params.except("current_password")
         resource.update_without_password(cleaned_params)
       end
+    end
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:account_update, keys: [:avatar, :username])
     end
   end
 end
