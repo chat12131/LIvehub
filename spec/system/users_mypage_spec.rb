@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe "MyPage", type: :system do
+RSpec.describe "MyPage" do
   let(:user) { create(:user) }
 
   context "ログイン前の場合" do
     it "マイページでログインリダイレクトされること" do
       visit mypage_path
-      expect(current_path).to eq(new_user_session_path)
+      expect(page).to have_current_path(new_user_session_path, ignore_query: true)
     end
   end
 
@@ -17,7 +17,7 @@ RSpec.describe "MyPage", type: :system do
     end
 
     it "usernameが正しく表示されること" do
-      expect(page).to have_content(user.email)
+      expect(page).to have_content(user.username)
     end
 
     it "emailが正しく表示されること" do
@@ -26,7 +26,7 @@ RSpec.describe "MyPage", type: :system do
 
     it "編集アイコンで編集ページにアクセスできること" do
       find("i.fas.fa-edit").click
-      expect(current_path).to eq(edit_user_registration_path)
+      expect(page).to have_current_path(edit_user_registration_path, ignore_query: true)
     end
   end
 end
