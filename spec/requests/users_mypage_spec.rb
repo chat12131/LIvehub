@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "MyPage", type: :request do
+RSpec.describe "MyPage" do
   describe "GET /mypage" do
-
     let(:user) { create(:user) }
+
     before do
       sign_in user
       get mypage_path
