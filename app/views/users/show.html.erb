@@ -1,4 +1,5 @@
 <div class="main-container text-center myprofile">
+  <h1 class="display-3" style="color: #F5F5F5;">マイページ</h1>
   <% if @user.avatar.present? %>
     <img src="<%= @user.avatar.url %>" alt="<%= @user.username %>'s Image" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px;">
   <% end %>
