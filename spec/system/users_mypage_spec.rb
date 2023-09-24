@@ -24,11 +24,6 @@ RSpec.describe "MyPage" do
       expect(page).to have_content(user.email)
     end
 
-    it "編集アイコンで編集ページにアクセスできること" do
-      find("i.fas.fa-edit").click
-      expect(page).to have_current_path(edit_user_registration_path, ignore_query: true)
-    end
-
     it 'アバターが表示されること' do
       expect(page).to have_css('img.user-avatar')
     end

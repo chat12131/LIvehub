@@ -1,6 +1,4 @@
-require 'rails_helper'
-
-image_path = Rails.root.join('spec', 'fixtures', 'files', 'image.jpg')
+image_path = Rails.root.join("spec/fixtures/files/image.jpg")
 uploaded_image = Rack::Test::UploadedFile.new(image_path, 'image/jpg')
 
 FactoryBot.define do

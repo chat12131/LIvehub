@@ -1,0 +1,88 @@
+// Place all the styles related to the Artists controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.artist {
+  background-color: white;
+  width: 70%;
+  margin: auto;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 10px;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  border: none !important;
+  box-shadow: none !important;
+  width: auto;
+  height: auto;
+  margin: 0 3px;
+  padding: 0;
+}
+
+.grey-label {
+  color: grey;
+}
+
+.label-checkbox-wrapper {
+  justify-content: flex-end;
+}
+
+.grey-label {
+  color: grey;
+}
+
+.custom-tall-control {
+  height: 60px;
+}
+
+.artist .form-control {
+  height: 60px;
+}
+
+.artist .memo {
+  height: 100px;
+}
+
+.artist-index {
+  width: 80%;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.clickable {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.clickable:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.artist-show {
+  max-width: 80%;
+  margin: 0 auto;
+  color: white;
+  padding: 20px;
+}
+
+.heart-pink {
+  color: #E1306C;
+  font-size: 24px;
+}
+
+.heart-black{
+  color: grey;
+  font-size: 24px;
+}
+
+.detail-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.artists-name {
+  letter-spacing: 0.2em;
+}
