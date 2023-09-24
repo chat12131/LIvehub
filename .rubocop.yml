@@ -7,8 +7,15 @@ require:
 
 AllCops:
   NewCops: enable
+  Exclude:
+  - 'db/migrate/*'
+  - 'bin/**'
+  - 'db/**'
 
 Style/Documentation:
+  Enabled: false
+
+Style/HashSyntax:
   Enabled: false
 
 RSpec/ContextWording:
@@ -22,3 +29,4 @@ RSpec/MultipleExpectations:
 
 Rails/LexicallyScopedActionFilter:
   Enabled: false
+
