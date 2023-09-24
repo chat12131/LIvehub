@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_18_105507) do
+ActiveRecord::Schema.define(version: 2023_09_20_131508) do
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "nickname"
+    t.string "image"
+    t.string "genre"
+    t.integer "user_id"
+    t.text "memo"
+    t.boolean "nickname_mode", default: false
+    t.boolean "favorited", default: false
+    t.date "founding_date"
+    t.date "first_show_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_artists_on_name"
+    t.index ["nickname"], name: "index_artists_on_nickname"
+    t.index ["user_id"], name: "index_artists_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +44,5 @@ ActiveRecord::Schema.define(version: 2023_09_18_105507) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "artists", "users"
 end
