@@ -28,6 +28,24 @@ RSpec.describe 'Header features' do
       first('a', text: '統計').click
       expect(page).to have_current_path('/')
     end
+
+    it 'マイページのリンクが正しいこと' do
+      click_on user.username
+      click_link 'マイページ'
+      expect(page).to have_current_path(mypage_path)
+    end
+
+    it '登録アーティストのリンクが正しいこと' do
+      click_on user.username
+      click_link '登録アーティスト'
+      expect(page).to have_current_path(artists_path)
+    end
+
+    it 'ログアウトが機能すること' do
+      click_on user.username
+      click_link 'ログアウト'
+      expect(page).to have_current_path(root_path)
+    end
   end
 
   context 'ログイン前の場合' do
