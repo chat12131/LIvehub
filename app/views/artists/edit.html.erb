@@ -31,6 +31,17 @@
           <%= f.date_field :first_show_date, class: 'form-control' %>
         </div>
       </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" id="member-input" class="form-control" placeholder="メンバーの名前">
+          <div class="input-group-append">
+            <button type="button" id="add-member" class="btn btn-secondary">更に追加</button>
+          </div>
+        </div>
+      </div>
+
+
       <div class="form-group text-center custom-file">
         <input type="file" class="custom-file-input" id="customFile" name="artist[image]">
         <label class="custom-file-label text-center" for="customFile">画像を選択<i class="fas fa-file-image" style="margin-left: 2px;"></i></label>
