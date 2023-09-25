@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Artists#show" do
   let!(:user) { create(:user) }
   let!(:artist) { create(:artist, user:) }
+  let!(:members) { create_list(:member, 3, artist: artist) }
 
   before do
     sign_in user
@@ -35,5 +36,28 @@ RSpec.describe "Artists#show" do
 
   it "アーティストのメモが表示されていること" do
     expect(response.body).to include artist.memo
+  end
+
+  context "メンバーが存在する場合" do
+    it "「メンバーを表示+」というテキストが存在すること" do
+      expect(response.body).to include 'メンバーを表示+'
+    end
+
+    it "メンバーの名前が正しく表示されていること" do
+      members.each do |member|
+        expect(response.body).to include member.name
+      end
+    end
+  end
+
+  context "メンバーが存在しない場合" do
+    before do
+      members.each(&:destroy)
+      get artist_path(artist)
+    end
+
+    it "「メンバーを表示+」というテキストが存在しないこと" do
+      expect(response.body).not_to include 'メンバーを表示+'
+    end
   end
 end
