@@ -1,60 +1,32 @@
 document.addEventListener('turbolinks:load', function() {
-  const editables = document.querySelectorAll('.editable-member');
+  const addMemberButton = document.getElementById('add-member');
+  const memberInput = document.getElementById('member-input');
+  const artistForm = document.querySelector('.artist form');
 
-  editables.forEach(editable => {
-    const nameElem = editable.querySelector('.member-name');
-    const editField = editable.querySelector('.member-edit-field');
-    const deleteBtn = editable.querySelector('.member-delete');
+  function addMemberAsHiddenField(memberName) {
+    const hiddenInput = document.createElement('input');
+    hiddenInput.type = 'hidden';
+    hiddenInput.name = 'artist[members_attributes][][name]';
+    hiddenInput.value = memberName;
+    artistForm.appendChild(hiddenInput);
+  }
 
-    nameElem.addEventListener('click', function() {
-      nameElem.classList.add('d-none');
-      editField.classList.remove('d-none');
-      deleteBtn.classList.remove('d-none');
-      editField.focus();
+  if (addMemberButton && memberInput) {
+    addMemberButton.addEventListener('click', function() {
+      const memberName = memberInput.value;
+      if (memberName) {
+        addMemberAsHiddenField(memberName);
+        memberInput.value = '';
+      }
     });
+  }
 
-    editField.addEventListener('blur', function() {
-      const memberId = editable.getAttribute('data-id');
-      const newValue = editField.value;
-
-      fetch(`/members/${memberId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          member: {
-            name: newValue
-          }
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          nameElem.textContent = newValue;
-          nameElem.classList.remove('d-none');
-          editField.classList.add('d-none');
-          deleteBtn.classList.add('d-none');
-        }
-      });
+  if (artistForm && memberInput) {
+    artistForm.addEventListener('submit', function() {
+      const memberName = memberInput.value;
+      if (memberName) {
+        addMemberAsHiddenField(memberName);
+      }
     });
-
-    deleteBtn.addEventListener('click', function() {
-      const memberId = editable.getAttribute('data-id');
-
-      fetch(`/members/${memberId}`, {
-        method: 'DELETE',
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          editable.remove();
-        }
-      });
-    });
-  });
+  }
 });
