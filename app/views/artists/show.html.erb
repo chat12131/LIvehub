@@ -35,7 +35,6 @@
         <% end %>
       <% end %>
     </div>
-
     <% if @display_attributes['ジャンル'].present? %>
       <div class="mt-2 text-center h3">
         ジャンル:
@@ -58,11 +57,10 @@
         <% end %>
       </div>
     <% end %>
-
     <div class="text-center mt-3">
       <% if @artist.members.any? %>
-        <a class="text-white h4" data-toggle="collapse" href="#membersList" role="button" aria-expanded="false" aria-controls="membersList">
-          メンバーを表示+
+        <a class="text-lightgray h4" data-toggle="collapse" href="#membersList" role="button" aria-expanded="false" aria-controls="membersList">
+          - メンバーを表示+ -
         </a>
       <% end %>
     </div>
