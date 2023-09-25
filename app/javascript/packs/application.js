@@ -3,6 +3,7 @@ import '../stylesheets/application';
 import '../../assets/stylesheets/user.scss';
 import "../custom_file_input";
 import "../artists";
+import "../member";
 
 
 // This file is automatically compiled by Webpack, along with any other files
