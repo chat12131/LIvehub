@@ -64,6 +64,6 @@ class ArtistsController < ApplicationController
   private
 
   def artist_params
-    params.require(:artist).permit(:name, :nickname, :image, :genre, :memo, :nickname_mode, :favorited, :founding_date, :first_show_date)
+    params.require(:artist).permit(:name, :nickname, :image, :genre, :memo, :nickname_mode, :favorited, :founding_date, :first_show_date, { members_attributes: [:id, :name, :_destroy] })
   end
 end
