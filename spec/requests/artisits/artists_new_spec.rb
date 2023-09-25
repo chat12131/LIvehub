@@ -26,5 +26,13 @@ RSpec.describe "Artists" do
       post artists_path, params: { artist: valid_attributes }
       expect(response).to redirect_to(artists_path)
     end
+
+    it "メンバーフィールドが含まれること" do
+      expect(response.body).to include 'メンバーの名前'
+    end
+
+    it "「更に追加」ボタンが存在すること" do
+      expect(response.body).to include '更に追加'
+    end
   end
 end
