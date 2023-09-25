@@ -1,5 +1,7 @@
 class Artist < ApplicationRecord
   belongs_to :user
+  has_many :members, dependent: :destroy
+  accepts_nested_attributes_for :members, allow_destroy: true, reject_if: :all_blank
   mount_uploader :image, AvatarUploader
   validates :name, presence: true, length: { maximum: 25 }
   validates :nickname, length: { maximum: 10 }
