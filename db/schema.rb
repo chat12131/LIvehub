@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_24_173846) do
+ActiveRecord::Schema.define(version: 2023_09_26_171947) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,19 @@ ActiveRecord::Schema.define(version: 2023_09_24_173846) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "venues", force: :cascade do |t|
+    t.string "name"
+    t.string "google_place_id"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.string "area"
+    t.index ["user_id"], name: "index_venues_on_user_id"
+  end
+
   add_foreign_key "artists", "users"
   add_foreign_key "members", "artists"
+  add_foreign_key "venues", "users"
 end

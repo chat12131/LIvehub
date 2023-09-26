@@ -1,0 +1,43 @@
+function initMap() {
+  const input = document.getElementById('venue-name-display');
+
+  const options = {
+      componentRestrictions: { country: 'JP' },
+  };
+  const autocomplete = new google.maps.places.Autocomplete(input, options);
+
+  autocomplete.setTypes(['establishment']);
+  autocomplete.setFields(['name', 'place_id', 'address_components', 'geometry']);
+
+  autocomplete.addListener('place_changed', function() {
+      const place = autocomplete.getPlace();
+
+      if (!place.geometry) {
+          console.error("Error: The place doesn't have geometry information.");
+          return;
+      }
+      input.value = place.name;
+
+      let area = "";
+      place.address_components.forEach(component => {
+          if (component.types.includes("locality")) {
+              area = component.long_name;
+          }
+      });
+
+      if (area.endsWith('市') || area.endsWith('区') || area.endsWith('町') || area.endsWith('村')) {
+          area = area.slice(0, -1);
+      }
+
+      const latitude = place.geometry.location.lat();
+      const longitude = place.geometry.location.lng();
+
+      document.getElementById("nameField").value = place.name;
+      document.getElementById("google_place_idField").value = place.place_id;
+      document.getElementById("areaField").value = area;
+      document.getElementById("latitudeField").value = latitude;
+      document.getElementById("longitudeField").value = longitude;
+  });
+}
+
+document.addEventListener('turbolinks:load', initMap);
