@@ -4,6 +4,7 @@ import '../../assets/stylesheets/user.scss';
 import "../custom_file_input";
 import "../artists";
 import "../member";
+import "../venue";
 
 
 // This file is automatically compiled by Webpack, along with any other files
