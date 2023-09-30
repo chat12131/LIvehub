@@ -1,12 +1,12 @@
 class ArtistsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_artist, only: [:show, :edit, :update, :destroy, :toggle_favorite]
 
   def index
-    @artists = Artist.all
+    @artists = current_user.artists
   end
 
   def show
-    @artist = Artist.find(params[:id])
     @display_attributes = {
       "アーティスト名" => @artist.name,
       "ニックネーム" => @artist.nickname,
@@ -21,21 +21,19 @@ class ArtistsController < ApplicationController
     @artist = Artist.new
   end
 
-  def edit
-    @artist = Artist.find(params[:id])
-  end
+  def edit; end
 
   def create
     @artist = current_user.artists.build(artist_params)
     if @artist.save
-      redirect_to artists_path
+      redirect_target = (params[:artist][:from].presence || artists_path)
+      redirect_to "#{redirect_target}?selected_artist_id=#{@artist.id}"
     else
       render 'new'
     end
   end
 
   def update
-    @artist = Artist.find(params[:id])
     if @artist.update(artist_params)
       redirect_to @artist
     else
@@ -44,17 +42,15 @@ class ArtistsController < ApplicationController
   end
 
   def destroy
-    @artist = Artist.find(params[:id])
     @artist.destroy
     redirect_to artists_path
   end
 
   def favorites
-    @favorite_artists = Artist.where(favorited: true)
+    @favorite_artists = current_user.artists.where(favorited: true)
   end
 
   def toggle_favorite
-    @artist = Artist.find(params[:id])
     @artist.update!(favorited: !@artist.favorited)
     respond_to do |format|
       format.js
@@ -62,6 +58,10 @@ class ArtistsController < ApplicationController
   end
 
   private
+
+  def set_artist
+    @artist = current_user.artists.find(params[:id])
+  end
 
   def artist_params
     params.require(:artist).permit(:name, :nickname, :image, :genre, :memo, :nickname_mode, :favorited, :founding_date, :first_show_date, { members_attributes: [:id, :name, :_destroy] })

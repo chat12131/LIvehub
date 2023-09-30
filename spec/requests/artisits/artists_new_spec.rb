@@ -24,7 +24,8 @@ RSpec.describe "Artists" do
 
     it "作成後のリダイレクトが正しいこと" do
       post artists_path, params: { artist: valid_attributes }
-      expect(response).to redirect_to(artists_path)
+      expected_redirect_path = "#{artists_path}?selected_artist_id=#{Artist.last.id}"
+      expect(response).to redirect_to(expected_redirect_path)
     end
 
     it "メンバーフィールドが含まれること" do
