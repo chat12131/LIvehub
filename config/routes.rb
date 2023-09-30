@@ -17,5 +17,8 @@ Rails.application.routes.draw do
   resources :live_schedules do
     resources :venues, only: [:new, :create]
   end
+  resources :live_records do
+    resources :venues, only: [:new, :create]
+  end
   root 'home#index'
 end
