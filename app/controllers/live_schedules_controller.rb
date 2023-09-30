@@ -58,7 +58,6 @@ class LiveSchedulesController < ApplicationController
 
     venue_data = live_schedule_params[:venue_attributes]
 
-    old_name_combination = "#{@live_schedule.date.strftime('%-m月%-d日')} #{@live_schedule.venue.area}"
 
     existing_venue = if venue_data[:google_place_id].present?
                        Venue.find_by(name: venue_data[:name], google_place_id: venue_data[:google_place_id], user_id: current_user.id)
@@ -66,7 +65,7 @@ class LiveSchedulesController < ApplicationController
                        Venue.find_by(name: venue_data[:name], user_id: current_user.id)
                      end
 
-    if @live_schedule.name == old_name_combination || @live_schedule.name.blank?
+    if @live_schedule.name.blank?
       date_str = @live_schedule.date.strftime("%-m月%-d日")
       @live_schedule.name = "#{date_str} #{@live_schedule.venue.area}"
     end
