@@ -10,6 +10,20 @@ class Artist < ApplicationRecord
   validate :first_show_date_after_founding_date
   validate :first_show_date_not_in_future
 
+  def display_name
+    nickname_mode && nickname.present? ? nickname : name
+  end
+
+  def non_display_name
+    nickname_mode && nickname.present? ? name : nickname
+  end
+
+  def combined_name
+    return display_name if non_display_name.blank?
+
+    "#{display_name}(#{non_display_name})"
+  end
+
   private
 
   def nickname_required_if_mode_on
