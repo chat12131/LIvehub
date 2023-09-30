@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe LiveSchedulesController do
+RSpec.describe "LiveSchedules" do
   let(:user) { create(:user) }
 
   describe "GET /new" do
