@@ -1,0 +1,102 @@
+<div class="main-container">
+  <div class="card">
+    <div class="card-body live-show">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <%= link_to edit_live_schedule_path(@live_schedule) do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+        <div class="text-center display-4">
+          ライブ予定詳細
+        </div>
+        <%= link_to @live_schedule, method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+          <i class="fas fa-trash"></i>
+        <% end %>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4 text-center">
+          <label>イベント名</label>
+          <p><%= @live_schedule.name %></p>
+        </div>
+        <% if @live_schedule.artist.present? %>
+          <div class="form-group col-md-4 text-center">
+            <label>アーティスト</label>
+            <p><%= @live_schedule.artist.display_name %></p>
+          </div>
+        <% end %>
+        <div class="form-group col-md-4 text-center">
+          <label>会場</label>
+          <p>
+            <%= @live_schedule.venue.name %>
+            <%= link_to "https://www.google.com/maps/search/#{@live_schedule.venue.name}", target: "_blank" do %>
+              <i class="fas fa-map-marker-alt ml-2"></i>
+            <% end %>
+          </p>
+        </div>
+      </div>
+      <div class="form-row d-flex justify-content-center">
+        <div class="form-group col-md-4 text-center">
+          <label>日付</label>
+          <p><%= @live_schedule.date %></p>
+        </div>
+        <% if @live_schedule.open_time? %>
+          <div class="form-group col-md-4 text-center">
+            <label>OPEN</label>
+            <p><%= @live_schedule.open_time.strftime("%H:%M") %> </p>
+          </div>
+        <% end %>
+        <% if @live_schedule.start_time? %>
+          <div class="form-group col-md-4 text-center">
+            <label>START</label>
+            <p><%= @live_schedule.start_time.strftime("%H:%M") %></p>
+          </div>
+        <% end %>
+      </div>
+      <% if @live_schedule.start_time? %>
+        <div class="form-group text-center">
+          <label>チケット購入状況</label>
+          <p><%= @live_schedule.ticket_status.humanize %></p>
+        </div>
+      <% end %>
+      <div class="form-row justify-content-center">
+        <% if @live_schedule.ticket_sale_date? %>
+          <div class="form-group col-md-4 text-center">
+            <label>チケット発売日時</label>
+            <p><%= @live_schedule.ticket_sale_date.strftime("%Y-%m-%d %H:%M") %></p>
+          </div>
+        <% end %>
+        <% if @live_schedule.ticket_price? %>
+          <div class="form-group col-md-4 text-center">
+            <label>チケット代</label>
+            <p><%= @live_schedule.ticket_price %></p>
+          </div>
+        <% end %>
+        <% if @live_schedule.drink_price? %>
+          <div class="form-group col-md-4 text-center">
+            <label>ドリンク代</label>
+            <p><%= @live_schedule.drink_price %></p>
+          </div>
+        <% end %>
+      </div>
+      <div class="form-row">
+        <% if @live_schedule.timetable? %>
+          <div class="form-group col-md-6 text-center">
+            <label>タイムテーブル画像</label>
+            <%= image_tag @live_schedule.timetable.url, size: '400x400', class: 'img-fluid' %>
+          </div>
+        <% end %>
+        <% if @live_schedule.announcement_image? %>
+          <div class="form-group col-md-6 text-center">
+            <label>告知画像</label>
+            <%= image_tag @live_schedule.announcement_image.url, size: '400x400', class: 'img-fluid' %>
+          </div>
+        <% end %>
+      </div>
+      <% if @live_schedule.memo? %>
+        <div class="form-group text-center">
+          <label>メモ</label>
+          <p><%= @live_schedule.memo %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

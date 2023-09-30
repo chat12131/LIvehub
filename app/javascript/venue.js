@@ -1,43 +1,66 @@
-function initMap() {
-  const input = document.getElementById('venue-name-display');
+window.initMap = function() {
+    const input = document.getElementById('venue-name-display');
 
-  const options = {
-      componentRestrictions: { country: 'JP' },
-  };
-  const autocomplete = new google.maps.places.Autocomplete(input, options);
+    if (!input || !(input instanceof HTMLInputElement)) {
+        console.error("Error: 'venue-name-display' is not an instance of HTMLInputElement.");
+        return;
+    }
 
-  autocomplete.setTypes(['establishment']);
-  autocomplete.setFields(['name', 'place_id', 'address_components', 'geometry']);
+    const options = {
+        componentRestrictions: { country: 'JP' },
+    };
+    const autocomplete = new google.maps.places.Autocomplete(input, options);
 
-  autocomplete.addListener('place_changed', function() {
-      const place = autocomplete.getPlace();
+    autocomplete.setTypes(['establishment']);
+    autocomplete.setFields(['name', 'place_id', 'address_components', 'geometry']);
 
-      if (!place.geometry) {
-          console.error("Error: The place doesn't have geometry information.");
-          return;
-      }
-      input.value = place.name;
+    autocomplete.addListener('place_changed', function() {
+        const place = autocomplete.getPlace();
 
-      let area = "";
-      place.address_components.forEach(component => {
-          if (component.types.includes("locality")) {
-              area = component.long_name;
-          }
-      });
+        if (!place.geometry) {
+            console.error("Error: The place doesn't have geometry information.");
+            return;
+        }
+        input.value = place.name;
 
-      if (area.endsWith('市') || area.endsWith('区') || area.endsWith('町') || area.endsWith('村')) {
-          area = area.slice(0, -1);
-      }
+        let area = "";
+        place.address_components.forEach(component => {
+            if (component.types.includes("locality")) {
+                area = component.long_name;
+            }
+        });
 
-      const latitude = place.geometry.location.lat();
-      const longitude = place.geometry.location.lng();
+        if (area.endsWith('市') || area.endsWith('区') || area.endsWith('町') || area.endsWith('村')) {
+            area = area.slice(0, -1);
+        }
 
-      document.getElementById("nameField").value = place.name;
-      document.getElementById("google_place_idField").value = place.place_id;
-      document.getElementById("areaField").value = area;
-      document.getElementById("latitudeField").value = latitude;
-      document.getElementById("longitudeField").value = longitude;
-  });
+        const latitude = place.geometry.location.lat();
+        const longitude = place.geometry.location.lng();
+
+        document.getElementById("nameField").value = place.name;
+        document.getElementById("google_place_idField").value = place.place_id;
+        document.getElementById("areaField").value = area;
+        document.getElementById("latitudeField").value = latitude;
+        document.getElementById("longitudeField").value = longitude;
+    });
+
+
+    input.addEventListener('input', function() {
+        document.getElementById("nameField").value = '';
+        document.getElementById("google_place_idField").value = '';
+        document.getElementById("areaField").value = '';
+        document.getElementById("latitudeField").value = '';
+        document.getElementById("longitudeField").value = '';
+    });
+
+
+    input.addEventListener('blur', function() {
+        const nameField = document.getElementById('nameField');
+
+        if (!nameField.value) {
+            nameField.value = input.value;
+        }
+    });
 }
 
 document.addEventListener('turbolinks:load', initMap);

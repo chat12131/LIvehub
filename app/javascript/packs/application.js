@@ -1,11 +1,12 @@
 import 'bootstrap';
+import flatpickr from "flatpickr";
 import '../stylesheets/application';
 import '../../assets/stylesheets/user.scss';
-import "../custom_file_input";
 import "../artists";
 import "../member";
 import "../venue";
-
+import '../initialize_flatpickr';
+import '../ticket';
 
 // This file is automatically compiled by Webpack, along with any other files
 // present in this directory. You're encouraged to place your actual application logic in
@@ -20,3 +21,4 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+

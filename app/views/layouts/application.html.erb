@@ -11,8 +11,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&language=jp&callback=initMap" async defer data-turbolinks-eval="false"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
   </head>
 
   <body>
@@ -25,7 +24,7 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to 'ライブ予定', '#', class: 'nav-link' %>
+              <%= link_to 'ライブ予定', live_schedules_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to 'ライブ記録', '#', class: 'nav-link' %>
@@ -58,6 +57,6 @@
       </div>
     </nav>
     <%= yield %>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&language=jp&callback=initMap" data-turbolinks-eval="false"></script>
   </body>
 </html>

@@ -30,3 +30,14 @@ RSpec/MultipleExpectations:
 Rails/LexicallyScopedActionFilter:
   Enabled: false
 
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+RSpec/SpecFilePathFormat:
+  Enabled: false

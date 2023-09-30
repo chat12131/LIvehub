@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       post 'toggle_favorite'
     end
   end
-
+  resources :live_schedules do
+    resources :venues, only: [:new, :create]
+  end
   root 'home#index'
 end

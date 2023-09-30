@@ -1,5 +1,5 @@
 class Venue < ApplicationRecord
+  has_many :live_schedule, dependent: :nullify
   belongs_to :user
-  validates :user_id, presence: true
   validates :name, presence: true
 end
