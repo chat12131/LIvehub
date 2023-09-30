@@ -50,10 +50,9 @@ document.addEventListener('turbolinks:load', function() {
       });
     }
 
-    flatpickr(".timepicker", {
-      noCalendar: true,
+    flatpickr("[class='flatpickr']", {
       enableTime: true,
-      dateFormat: "H:i",
+      dateFormat: "Y-m-d H:i",
       disableMobile: true,
       'locale': 'ja'
     });
