@@ -1,0 +1,83 @@
+<div class="main-container">
+  <div class="card">
+    <div class="card-body live-show">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <%= link_to edit_live_record_path(@live_record) do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+        <div class="text-center display-4">
+          ライブ記録詳細
+        </div>
+        <%= link_to @live_record, method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+          <i class="fas fa-trash"></i>
+        <% end %>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4 text-center">
+          <label>イベント名</label>
+          <p><%= @live_record.name %></p>
+        </div>
+        <% if @live_record.artist_id.present? %>
+          <div class="form-group col-md-4 text-center">
+            <label>アーティスト</label>
+            <p><%= @live_record.artist.display_name %></p>
+          </div>
+        <% end %>
+
+        <div class="form-group col-md-4 text-center">
+          <label>会場</label>
+          <p>
+            <%= Venue.find(@live_record.venue_id).name %>
+            <%= link_to "https://www.google.com/maps/search/#{@live_record.venue.name}", target: "_blank" do %>
+              <i class="fas fa-map-marker-alt ml-2"></i>
+            <% end %>
+          </p>
+        </div>
+        <div class="form-group col-md-4 text-center">
+          <label>日付</label>
+          <p><%= @live_record.date %></p>
+        </div>
+
+        <% if @live_record.start_time.present? %>
+          <div class="form-group col-md-4 text-center">
+            <label>START</label>
+            <p><%= @live_record.start_time.strftime("%H:%M") %></p>
+          </div>
+        <% end %>
+
+        <% if @live_record.ticket_price.present? %>
+          <div class="form-group col-md-4 text-center">
+            <label>チケット代</label>
+            <p><%= @live_record.ticket_price %></p>
+          </div>
+        <% end %>
+        <% if @live_record.drink_price.present? %>
+          <div class="form-group col-md-4 text-center">
+            <label>ドリンク代</label>
+            <p><%= @live_record.drink_price %></p>
+          </div>
+        <% end %>
+      </div>
+      <div class="form-row">
+        <% if @live_record.timetable.present? %>
+          <div class="form-group col-md-6 text-center">
+            <label>タイムテーブル画像</label>
+            <%= image_tag @live_record.timetable.url, size: '400x400', class: 'img-fluid' %>
+          </div>
+        <% end %>
+        <% if @live_record.announcement_image.present? %>
+          <div class="form-group col-md-6 text-center">
+            <label>告知画像</label>
+            <%= image_tag @live_record.announcement_image.url, size: '400x400', class: 'img-fluid' %>
+          </div>
+        <% end %>
+      </div>
+      <% if @live_record.memo.present? %>
+        <div class="form-group text-center">
+          <label>メモ</label>
+          <p><%= @live_record.memo %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
