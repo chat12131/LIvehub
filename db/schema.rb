@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_29_182737) do
+ActiveRecord::Schema.define(version: 2023_09_30_150817) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name", null: false
@@ -28,6 +28,25 @@ ActiveRecord::Schema.define(version: 2023_09_29_182737) do
     t.index ["name"], name: "index_artists_on_name"
     t.index ["nickname"], name: "index_artists_on_nickname"
     t.index ["user_id"], name: "index_artists_on_user_id"
+  end
+
+  create_table "live_records", force: :cascade do |t|
+    t.string "name"
+    t.integer "artist_id"
+    t.date "date"
+    t.time "start_time"
+    t.integer "venue_id", null: false
+    t.integer "ticket_price"
+    t.integer "drink_price"
+    t.string "timetable"
+    t.string "announcement_image"
+    t.text "memo"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_live_records_on_artist_id"
+    t.index ["user_id"], name: "index_live_records_on_user_id"
+    t.index ["venue_id"], name: "index_live_records_on_venue_id"
   end
 
   create_table "live_schedules", force: :cascade do |t|
@@ -87,6 +106,9 @@ ActiveRecord::Schema.define(version: 2023_09_29_182737) do
   end
 
   add_foreign_key "artists", "users"
+  add_foreign_key "live_records", "artists"
+  add_foreign_key "live_records", "users"
+  add_foreign_key "live_records", "venues"
   add_foreign_key "live_schedules", "artists"
   add_foreign_key "live_schedules", "users"
   add_foreign_key "live_schedules", "venues"
