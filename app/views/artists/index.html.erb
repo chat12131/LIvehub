@@ -15,14 +15,7 @@
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center">
                 <h5 class="card-title mb-0">
-                  <% if artist.nickname_mode && artist.nickname.present? %>
-                    <%= artist.nickname %> (<%= artist.name %>)
-                  <% else %>
-                    <%= artist.name %>
-                    <% if artist.nickname.present? %>
-                      ( <%= artist.nickname %> )
-                    <% end %>
-                  <% end %>
+                  <%= artist.combined_name %>
                 </h5>
                 <%= link_to '編集', edit_artist_path(artist), class: 'btn btn-primary btn-fixed-height' %>
               </div>

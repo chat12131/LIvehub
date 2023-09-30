@@ -7,10 +7,12 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-group' }) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
           <div class="mb-3">
-            <div class="form-group text-center custom-file">
-              <input type="file" class="custom-file-input" id="customFile" name="artist[image]">
-              <label class="custom-file-label text-center" for="customFile">画像を選択<i class="fas fa-file-image" style="margin-left: 2px;"></i></label>
-            </div>
+          <div class="label-box__inner text-center">
+              <label class="mealpicture">アイコンを追加 <i class="fas fa-upload"></i>
+                  <%= f.file_field :avatar ,class:"input-default" %>
+                  <div class="boxFileSelect"></div>
+              </label>
+          </div>
           </div>
           <div class="mb-3">
             <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: "ユーザーネーム", class: 'form-control', required: "required" %>

@@ -19,13 +19,7 @@
     </div>
     <div class="artists-name text-center">
       <div class="d-inline-block align-middle mr-2 mb-3 display-3">
-        <% if @artist.nickname_mode? && @display_attributes['ニックネーム'].present? %>
-          <%= "#{@display_attributes['ニックネーム']} (#{@display_attributes['アーティスト名']})" %>
-        <% elsif @display_attributes['ニックネーム'].present? %>
-          <%= "#{@display_attributes['アーティスト名']} (#{@display_attributes['ニックネーム']})" %>
-        <% else %>
-          <%= @display_attributes['アーティスト名'] %>
-        <% end %>
+        <%= @artist.combined_name %>
       </div>
       <%= link_to toggle_favorite_artist_path(@artist), remote: true, method: :post do %>
         <% if @artist.favorited? %>
