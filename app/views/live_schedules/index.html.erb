@@ -1,0 +1,38 @@
+<div class="main-container d-flex flex-column align-items-center justify-content-start">
+  <div class="container pt-4">
+    <div class="row">
+      <div>
+        <%= link_to "新規作成", new_live_schedule_path, class: "btn btn-success mb-3" %>
+      </div>
+    </div>
+    <div class="list-group">
+      <% @live_schedules.each do |live_schedule| %>
+        <a href="<%= live_schedule_path(live_schedule) %>" class="list-group-item list-group-item-action mb-2 d-flex flex-wrap align-items-center" style="background-color: white;">
+          <div class="d-flex w-100 justify-content-between mb-2">
+            <h5 class="mb-1"><%= live_schedule.name %></h5>
+          </div>
+          <div class="d-flex flex-wrap">
+            <% if live_schedule.artist.present? %>
+              <p class="mb-2 mr-3 flex-fill"><strong>アーティスト:</strong> <%= live_schedule.artist.display_name %></p>
+            <% end %>
+            <p class="mb-2 mr-3 flex-fill">
+              <strong>会場:</strong> <%= live_schedule.venue.name %>
+              <% if live_schedule.venue.area.present? %>
+                (<%= live_schedule.venue.area %>)
+              <% end %>
+            </p>
+            <% if live_schedule.open_time.present? && live_schedule.start_time.present? %>
+              <p class="mb-2 mr-3 flex-fill"><strong>OPEN:</strong> <%= live_schedule.open_time.strftime("%H:%M") %> <strong>START:</strong> <%= live_schedule.start_time.strftime("%H:%M") %></p>
+            <% elsif live_schedule.open_time.present? %>
+              <p class="mb-2 mr-3 flex-fill"><strong>OPEN:</strong> <%= live_schedule.open_time.strftime("%H:%M") %></p>
+            <% elsif live_schedule.start_time.present? %>
+              <p class="mb-2 mr-3 flex-fill"><strong>START:</strong> <%= live_schedule.start_time.strftime("%H:%M") %></p>
+            <% end %>
+            <p class="mb-2 mr-3 flex-fill"><strong>チケット:</strong> <%= live_schedule.ticket_status ? live_schedule.ticket_status.humanize : "未定" %></p>
+            <p class="mb-2 flex-fill"><strong>ライブまで:</strong> <%= live_schedule.days_until_live %>日</p>
+          </div>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>
