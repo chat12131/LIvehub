@@ -4,7 +4,6 @@
       <div class="text-center display-4 mb-4">
         ライブ予定編集
       </div>
-      <%= @live_schedule.errors.full_messages %>
       <%= form_with model: @live_schedule, html: { multipart: true } do |f| %>
         <div class="form-row">
           <div class="form-group col-md-6 text-center">
