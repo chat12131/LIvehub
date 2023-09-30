@@ -12,6 +12,9 @@
             <h5 class="mb-1"><%= live_schedule.name %></h5>
           </div>
           <div class="d-flex flex-wrap">
+            <p class="mb-2 mr-3 flex-fill">
+              <strong>日付:</strong> <%= l(live_schedule.date, format: "%-m月%-d日") %>
+            </p>
             <% if live_schedule.artist.present? %>
               <p class="mb-2 mr-3 flex-fill"><strong>アーティスト:</strong> <%= live_schedule.artist.display_name %></p>
             <% end %>
@@ -30,6 +33,12 @@
             <% end %>
             <p class="mb-2 mr-3 flex-fill"><strong>チケット:</strong> <%= live_schedule.ticket_status ? live_schedule.ticket_status.humanize : "未定" %></p>
             <p class="mb-2 flex-fill"><strong>ライブまで:</strong> <%= live_schedule.days_until_live %>日</p>
+            <% if live_schedule.ticket_price.present? %>
+              <p class="mb-2 mr-3 flex-fill"><strong>チケット代:</strong> <%= live_schedule.ticket_price %>円</p>
+            <% end %>
+            <% if live_schedule.drink_price.present? %>
+              <p class="mb-2 mr-3 flex-fill"><strong>ドリンク代:</strong> <%= live_schedule.drink_price %>円</p>
+            <% end %>
           </div>
         </a>
       <% end %>

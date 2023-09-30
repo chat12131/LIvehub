@@ -1,22 +1,22 @@
 <div class="main-container">
-  <div class="card mt-3">
+  <div class="card">
     <div class="card-body">
-      <div class="text-center display-4 mb-4">
+      <div class="text-center display-4">
         ライブ予定編集
       </div>
       <%= form_with model: @live_schedule, html: { multipart: true } do |f| %>
         <div class="form-row">
           <div class="form-group col-md-6 text-center">
             <%= f.label :name, "イベント名" %>
-            <%= f.text_field :name, class: 'form-control' %>
+            <%= f.text_field :name, class: 'form-control', placeholder: '入力しない場合は日付と会場のエリアになります' %>
           </div>
           <div class="form-group col-md-6">
             <div class="d-flex justify-content-between align-items-center text-center">
               <%= f.label :artist_id, "アーティスト" %>
-              <%= link_to '新しいアーティストを追加', new_artist_path(from: request.fullpath), class: 'btn btn-secondary btn-sm' %>
+              <%= link_to '新しいアーティストを追加', new_artist_path(from: request.fullpath), class: 'btn btn-secondary btn-sm mb-1' %>
             </div>
-            <%= f.select :artist_id,  [['-アーティストを選択しない-', nil]] + current_user.artists.all.collect { |artist| [artist.display_name, artist.id] },  {}, class: "js-searchable form-control", data: { select2: {} } %>
-          </div>
+            <% selected_artist_id = params[:selected_artist_id] || '' %>
+            <%= f.select :artist_id, current_user.artists.all.collect { |artist| [artist.display_name, artist.id] }, { include_blank: '-アーティストを選択-', selected: selected_artist_id }, class: "form-control" %></div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4 text-center">
@@ -95,3 +95,4 @@
     </div>
   </div>
 </div>
+
