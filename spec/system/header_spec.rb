@@ -16,7 +16,7 @@ RSpec.describe 'Header features' do
 
     it 'ライブ記録が正しく機能すること' do
       first('a', text: 'ライブ記録').click
-      expect(page).to have_current_path('/')
+      expect(page).to have_current_path(live_records_path)
     end
 
     it 'グッズ記録が正しく機能すること' do
