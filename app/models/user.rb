@@ -4,6 +4,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   has_many :artists, dependent: :destroy
   has_many :live_schedules, dependent: :destroy
+  has_many :live_records, dependent: :destroy
   has_many :venue, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
