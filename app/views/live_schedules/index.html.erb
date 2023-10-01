@@ -37,7 +37,7 @@
               <p class="mb-2 mr-3 flex-fill"><strong>START:</strong> <%= live_schedule.start_time.strftime("%H:%M") %></p>
             <% end %>
             <p class="mb-2 mr-3 flex-fill"><strong>チケット:</strong> <%= live_schedule.ticket_status ? live_schedule.ticket_status.humanize : "未定" %></p>
-            <p class="mb-2 flex-fill"><strong>ライブまで:</strong> <%= live_schedule.days_until_live %>日</p>
+            <p class="mb-2 mr-3 flex-fill"><strong>ライブまで:</strong> <%= live_schedule.days_until_live %>日</p>
             <% if live_schedule.ticket_price.present? %>
               <p class="mb-2 mr-3 flex-fill"><strong>チケット代:</strong> <%= live_schedule.ticket_price %>円</p>
             <% end %>
