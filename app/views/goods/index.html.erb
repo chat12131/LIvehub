@@ -1,0 +1,54 @@
+<div class="main-container">
+  <div class="goods">
+    <div class="row align-items-end mb-2">
+      <div class="col-md-2 mb-2">
+        <%= link_to "新規作成", new_good_path, class: "btn btn-success" %>
+      </div>
+      <div class="col-md-8 text-center mb-4">
+        <div class="display-4 text-white">グッズ記録</div>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+    <div class="row">
+      <% @goods.each do |good| %>
+        <div class="col-md-6 mb-4">
+          <div class="card h-auto">
+            <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="card-title mb-0"><%= good.category.name if good.category.present? %></h5>
+                <h6 class="card-subtitle mb-0 mr-3"><%= good.quantity %>個</h6>
+                <div class="d-flex">
+                    <%= link_to edit_good_path(good), class: "mr-2" do %>
+                        <i class="fas fa-edit"></i>
+                    <% end %>
+                    <%= link_to good, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                        <i class="fa fa-trash"></i>
+                    <% end %>
+                </div>
+            </div>
+              <div class="d-flex flex-wrap">
+                <% if good.price.present? %>
+                  <small class="mr-3">値段: <%= good.price %></small>
+                  <small class="mr-3">合計: <%= good.quantity * good.price %></small>
+                <% end %>
+                <% if good.artist.present? %>
+                  <small class="mr-3">アーティスト: <%= good.artist.display_name %></small>
+                <% end %>
+                <% if good.member.present? %>
+                  <small class="mr-3">メンバー: <%= good.member.name %></small>
+                <% end %>
+                <% if good.live_record.present? %>
+                  <small class="mr-3">購入したライブ: <%= good.live_record.name %></small>
+                <% end %>
+                <% if good.date.present? %>
+                  <small>購入日: <%= good.date %></small>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+   </div>
+</div>
