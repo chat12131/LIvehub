@@ -17,7 +17,7 @@ RSpec.describe "Artists" do
     context "有効な属性を持つとき" do
       it "アーティスト情報が正しく更新されること" do
         put artist_path(artist), params: { artist: { name: "新しいアーティスト名", genre: "Jpop" } }
-        expect(response).to redirect_to(artist)
+        expect(response).to redirect_to(artists_path(selected_artist_id: 1))
         artist.reload
         expect(artist.name).to eq("新しいアーティスト名")
         expect(artist.genre).to eq("Jpop")
