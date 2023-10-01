@@ -1,7 +1,7 @@
 namespace :scheduler do
   desc "Migrate live schedules to live records"
   task migrate_live_schedules: :environment do
-    LiveSchedule.where(date: Date.today).each do |schedule|
+    LiveSchedule.where(date: Date.current).each do |schedule|
       LiveRecord.create!(
         name: schedule.name,
         artist_id: schedule.artist_id,
@@ -17,7 +17,7 @@ namespace :scheduler do
   end
 
   desc "Delete future live schedules from tomorrow onwards"
-  task delete_future_schedules: :environment do
-    LiveSchedule.where('date >= ?', Date.tomorrow).destroy_all
+  task delete_past_schedules: :environment do
+    LiveSchedule.where('date < ?', Date.current).destroy_all
   end
 end
