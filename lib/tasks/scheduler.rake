@@ -1,7 +1,7 @@
 namespace :scheduler do
   desc "Migrate live schedules to live records"
   task migrate_live_schedules: :environment do
-    LiveSchedule.where(date: Date.current).each do |schedule|
+    LiveSchedule.where(date: Date.current).find_each do |schedule|
       LiveRecord.create!(
         name: schedule.name,
         artist_id: schedule.artist_id,
