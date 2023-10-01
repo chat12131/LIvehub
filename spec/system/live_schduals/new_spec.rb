@@ -14,7 +14,7 @@ RSpec.describe "LiveSchedules" do
     end
 
     it "正常な情報でライブ予定を作成すると、予定が保存されること", :js do
-      execute_script("document.querySelector('#live_schedule_date').value = '2023-10-01'")
+      execute_script("document.querySelector('#live_schedule_date').value = '2023-10-30'")
       find_by_id('venue-name-display').set("新しい会場名")
       execute_script("window.scrollBy(0,10000)")
       click_button "登録"
