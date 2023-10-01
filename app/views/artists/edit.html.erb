@@ -48,6 +48,7 @@
         <%= f.text_area :memo, class: 'form-control memo' %>
       </div>
       <div class="form-group text-center">
+        <%= f.hidden_field :from, value: params[:from] %>
         <%= f.submit '更新', class: 'btn btn-primary w-50 mx-auto' %>
       </div>
     <% end %>

@@ -35,7 +35,8 @@ class ArtistsController < ApplicationController
 
   def update
     if @artist.update(artist_params)
-      redirect_to @artist
+      redirect_target = (params[:artist][:from].presence || artists_path)
+      redirect_to "#{redirect_target}?selected_artist_id=#{@artist.id}"
     else
       render 'edit'
     end
