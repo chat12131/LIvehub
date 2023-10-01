@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_30_150817) do
+ActiveRecord::Schema.define(version: 2023_10_01_044524) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name", null: false
@@ -28,6 +28,33 @@ ActiveRecord::Schema.define(version: 2023_09_30_150817) do
     t.index ["name"], name: "index_artists_on_name"
     t.index ["nickname"], name: "index_artists_on_nickname"
     t.index ["user_id"], name: "index_artists_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "goods", force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.string "name"
+    t.integer "quantity"
+    t.integer "price"
+    t.integer "user_id", null: false
+    t.integer "live_record_id"
+    t.integer "artist_id"
+    t.integer "member_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.date "date"
+    t.index ["artist_id"], name: "index_goods_on_artist_id"
+    t.index ["category_id"], name: "index_goods_on_category_id"
+    t.index ["live_record_id"], name: "index_goods_on_live_record_id"
+    t.index ["member_id"], name: "index_goods_on_member_id"
+    t.index ["user_id"], name: "index_goods_on_user_id"
   end
 
   create_table "live_records", force: :cascade do |t|
@@ -106,6 +133,12 @@ ActiveRecord::Schema.define(version: 2023_09_30_150817) do
   end
 
   add_foreign_key "artists", "users"
+  add_foreign_key "categories", "users"
+  add_foreign_key "goods", "artists"
+  add_foreign_key "goods", "categories"
+  add_foreign_key "goods", "live_records"
+  add_foreign_key "goods", "members"
+  add_foreign_key "goods", "users"
   add_foreign_key "live_records", "artists"
   add_foreign_key "live_records", "users"
   add_foreign_key "live_records", "venues"

@@ -2,15 +2,22 @@
   <div class="card">
     <div class="card-body live-show">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <%= link_to edit_live_record_path(@live_record) do %>
-          <i class="fas fa-edit"></i>
-        <% end %>
+        <div>
+          <%= link_to new_good_path(live_record_id: @live_record.id), class: "btn btn-primary mr-3 mb-2 d-block" do %>
+            グッズ<i class="fas fa-plus"></i>
+          <% end %>
+          <%= link_to edit_live_record_path(@live_record) do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+        </div>
         <div class="text-center display-4">
           ライブ記録詳細
         </div>
-        <%= link_to @live_record, method: :delete, data: { confirm: '本当に削除しますか？' } do %>
-          <i class="fas fa-trash"></i>
-        <% end %>
+        <div>
+          <%= link_to @live_record, method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+            <i class="fas fa-trash"></i>
+          <% end %>
+        </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-4 text-center">

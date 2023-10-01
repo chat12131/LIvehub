@@ -1,4 +1,5 @@
 class LiveRecord < ApplicationRecord
+  has_many :goods, dependent: :nullify
   belongs_to :artist, optional: true
   belongs_to :venue
   belongs_to :user

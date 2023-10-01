@@ -2,7 +2,6 @@ window.initMap = function() {
     const input = document.getElementById('venue-name-display');
 
     if (!input || !(input instanceof HTMLInputElement)) {
-        console.error("Error: 'venue-name-display' is not an instance of HTMLInputElement.");
         return;
     }
 

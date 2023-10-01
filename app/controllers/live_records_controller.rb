@@ -87,6 +87,11 @@ class LiveRecordsController < ApplicationController
     redirect_to live_records_path
   end
 
+  def details
+    live_record = LiveRecord.find(params[:id])
+    render json: { date: live_record.date, artist: live_record.artist }
+  end
+
   private
 
   def set_live_record

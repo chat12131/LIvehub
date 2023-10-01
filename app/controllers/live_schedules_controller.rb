@@ -58,7 +58,6 @@ class LiveSchedulesController < ApplicationController
 
     venue_data = live_schedule_params[:venue_attributes]
 
-
     existing_venue = if venue_data[:google_place_id].present?
                        Venue.find_by(name: venue_data[:name], google_place_id: venue_data[:google_place_id], user_id: current_user.id)
                      else

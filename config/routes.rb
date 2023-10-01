@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     collection do
       get :favorites
     end
+    resources :members, only: [:index]
     member do
       post 'toggle_favorite'
     end
@@ -18,7 +19,11 @@ Rails.application.routes.draw do
     resources :venues, only: [:new, :create]
   end
   resources :live_records do
+    get 'details', on: :member, format: :json
     resources :venues, only: [:new, :create]
+  end
+  resources :goods do
+    resources :categories, only: [:new, :create]
   end
   root 'home#index'
 end

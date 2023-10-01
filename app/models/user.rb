@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :live_schedules, dependent: :destroy
   has_many :live_records, dependent: :destroy
   has_many :venues, dependent: :destroy
+  has_many :goods, dependent: :destroy
+  has_many :categories, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

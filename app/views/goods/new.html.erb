@@ -1,0 +1,55 @@
+<div class="main-container">
+  <div class="good-form text-center">
+    <div class="text-center display-4 mb-4">
+      グッズ記録作成
+    </div>
+    <%= form_for @good do |f| %>
+      <div class="form-group">
+        <%= f.label :商品名 %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :カテゴリー %> <span class='text-danger'>*</span>
+        <%= f.select :category_id, @categories.map { |c| [c.name, c.id] }, { include_blank: true }, { class: "form-control text-center", id: "category_selector" } %>
+      </div>
+      <%= f.fields_for :category do |cf| %>
+        <div class="form-group" id="new-categories" style="display:none">
+          <%= cf.label :name, "- 追加するカテゴリーを入力 -" %>
+          <%= text_field_tag 'good[new_category_name]', nil, class: "form-control" %>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.label :個数 %><span class='text-danger'>*</span>
+        <%= f.number_field :quantity, class: "form-control", placeholder: '数字を入力'  %>
+      </div>
+      <div class="form-group">
+        <%= f.label :価格 %>
+        <%= f.number_field :price, class: "form-control", placeholder: '1つのグッズ価格を入力' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :ライブ記録 %>
+        <%= f.select :live_record_id, @live_records.map { |lr| [lr.name, lr.id] }, { include_blank: "-ライブ記録を選択-", selected: @good.live_record_id }, { class: "form-control text-center" } %>
+      </div>
+      <div class="form-group">
+        <div class="text-center mb-1">
+          <%= f.label :artist_id, "アーティスト"%>
+          <%= link_to 'アーティストを追加', new_artist_path(from: request.fullpath), class: 'btn btn-secondary btn-sm mb-1 ' %>
+        </div>
+        <% selected_artist_id = params[:selected_artist_id] || '' %>
+        <%= f.select :artist_id, current_user.artists.all.collect { |artist| [artist.display_name, artist.id] }, { include_blank: '-アーティストを選択-', selected: selected_artist_id }, class: "form-control text-center" %>
+      </div>
+      <div class="form-group">
+        <div class="text-center d-flex align-items-center justify-content-center mb-1">
+          <%= f.label :member_id, "メンバー" %>
+          <%= link_to 'メンバーを追加', '#', class: 'btn btn-secondary btn-sm mb-1 ml-2', id: 'add_member_link', style: 'display: none;' %>
+        </div>
+        <%= f.select :member_id, [["-アーティストを選択してください-", ""]], {}, { class: "form-control text-center", disabled: true} %>
+      </div>
+      <div class="form-group ">
+        <%= f.label :date, "購入日", class: "text-center" %> <span class='text-muted'>設定しない場合は記録作成日になります</span>
+        <%= f.date_field :date, class: 'form-control' %>
+      </div>
+      <%= f.submit "作成", class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+</div>

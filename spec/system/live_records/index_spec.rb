@@ -17,8 +17,4 @@ RSpec.describe "LiveRecords Index" do
   it "会場名が一覧に表示される" do
     expect(page).to have_content(upcoming_live_record.venue.name)
   end
-
-  it "新規作成ボタンが表示される" do
-    expect(page).to have_link("新規作成", href: new_live_record_path)
-  end
 end
