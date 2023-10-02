@@ -25,5 +25,6 @@ Rails.application.routes.draw do
   resources :goods do
     resources :categories, only: [:new, :create]
   end
+  get 'statistics', to: 'statistics#index'
   root 'home#index'
 end
