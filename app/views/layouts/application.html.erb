@@ -12,6 +12,7 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.0/chart.min.js"></script>
   </head>
 
   <body>
@@ -33,7 +34,7 @@
               <%= link_to 'グッズ記録', goods_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
-              <%= link_to '統計', '#', class: 'nav-link' %>
+              <%= link_to '統計', statistics_path, class: 'nav-link' %>
             </li>
             <li class="nav-item dropdown">
               <%= link_to  current_user.username , '#', class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' %>
