@@ -76,7 +76,11 @@ class LiveSchedulesController < ApplicationController
     else
       venue = @live_schedule.build_venue(venue_data.except(:user, :user_id))
       venue.user = current_user
-      venue.save!
+      unless venue.save
+        @live_schedule.errors.add(:venue, "の保存に失敗しました。")
+        Rails.logger.debug venue.errors.full_messages
+        render :edit and return
+      end
     end
 
     if @live_schedule.save
