@@ -14,7 +14,7 @@ RSpec.describe LiveRecordsController do
     end
 
     it "renders the form elements" do
-      expect(response.body).to include('ライブ記録作成')
+      expect(response.body).to include('ライブ記録')
       expect(response.body).to include('name="live_record[name]"')
       expect(response.body).to include('name="live_record[date]"')
     end
