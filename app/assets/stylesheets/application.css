@@ -147,3 +147,21 @@
  .mealpicture:hover {
   cursor: pointer;
  }
+
+ @media (max-width: 1023px) {
+  .artist, .artist-index, .artist-show {
+    width: 99%;
+  }
+  .good-form, .goods {
+    width: 99%;
+  }
+  .good-form{
+    padding: 10px;
+  }
+  .card {
+    width: 98%;
+  }
+  .spec {
+    width: 100%;
+  }
+}

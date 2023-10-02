@@ -26,7 +26,7 @@ RSpec.describe 'Header features' do
 
     it '統計が正しく機能すること' do
       first('a', text: '統計').click
-      expect(page).to have_current_path('/')
+      expect(page).to have_current_path(statistics_path)
     end
 
     it 'マイページのリンクが正しいこと' do

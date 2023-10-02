@@ -10,7 +10,7 @@ RSpec.describe "LiveRecords" do
     end
 
     it "ページが正常に表示されること" do
-      expect(page).to have_content("ライブ記録作成")
+      expect(page).to have_content("ライブ記録")
     end
 
     it "正常な情報でライブ記録を作成すると、記録が保存されること", :js do

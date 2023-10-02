@@ -18,7 +18,7 @@
       <% end %>
     </div>
     <div class="artists-name text-center">
-      <div class="d-inline-block align-middle mr-2 mb-3 display-3">
+      <div class="d-inline-block align-middle mr-2 mb-3 display-4">
         <%= @artist.combined_name %>
       </div>
       <%= link_to toggle_favorite_artist_path(@artist), remote: true, method: :post do %>
@@ -35,18 +35,18 @@
         <%= @display_attributes['ジャンル'] %>
       </div>
     <% end %>
-    <% if @display_attributes['結成日'].present? || @display_attributes['初めて見た日'].present? %>
+    <% if @display_attributes['結成日'].present? || @display_attributes['初ライブ日'].present? %>
       <div class="row mt-4 justify-content-center">
         <% if @display_attributes['結成日'].present? %>
           <div class="col-auto text-center h3">
             結成日:
-            <%= @display_attributes['結成日'] %>
+            <%= @display_attributes['結成日'] %> (<%= days_since(@display_attributes['結成日']) %>日目)
           </div>
         <% end %>
-        <% if @display_attributes['初めて見た日'].present? %>
+        <% if @display_attributes['初ライブ日'].present? %>
           <div class="col-auto text-center h3">
-            初めて見た日:
-            <%= @display_attributes['初めて見た日'] %>
+            初ライブ日:
+            <%= @display_attributes['初ライブ日'] %> (<%= days_since(@display_attributes['初ライブ日']) %>日目)
           </div>
         <% end %>
       </div>

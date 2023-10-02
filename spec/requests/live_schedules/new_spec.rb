@@ -14,7 +14,7 @@ RSpec.describe "LiveSchedules" do
     end
 
     it "renders the form elements" do
-      expect(response.body).to include('ライブ予定作成')
+      expect(response.body).to include('ライブ予定')
       expect(response.body).to include('name="live_schedule[name]"')
       expect(response.body).to include('name="live_schedule[date]"')
     end
