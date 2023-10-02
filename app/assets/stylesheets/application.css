@@ -165,3 +165,11 @@
     width: 100%;
   }
 }
+  @media (max-width: 768px) {
+    .navbar .dropdown-toggle:after {
+      display: none;
+  }
+  .navbar-nav .nav-link {
+    text-align: center;
+  }
+  }
