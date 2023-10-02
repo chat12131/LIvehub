@@ -7,7 +7,7 @@ class StatisticsController < ApplicationController
     @total_live_records = current_user.live_records.count
 
     # 今月のライブ回数
-    @this_month_live_count = current_user.live_records.where("strftime('%m', date) = ?", this_month.to_s).count
+    @this_month_live_count = current_user.live_records.where("MONTH(date) = ?", this_month).count
 
     # ライブに参加したアーティスト数
     @unique_artist_count = current_user.live_records.joins(:artist).distinct.count('artists.id')
@@ -27,7 +27,7 @@ class StatisticsController < ApplicationController
     @total_expense = live_total + goods_total
 
     # 今月のグッズ購入数
-    @this_month_goods_count = current_user.goods.where("strftime('%m', date) = ?", this_month.to_s).sum(:quantity)
+    @this_month_goods_count = current_user.goods.where("MONTH(date) = ?", this_month).sum(:quantity)
 
     # メンバー別のグッズ購入ランキング
     @member_goods_ranking = current_user.goods.joins(:member).group('members.name').sum('goods.price * goods.quantity')
