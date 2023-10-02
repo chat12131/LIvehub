@@ -1,1 +1,1 @@
-[ERDを見る](./path/to/erd.pdf)
+[ERDを見る](./erd.pdf)
