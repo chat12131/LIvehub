@@ -20,7 +20,7 @@ class LiveSchedule < ApplicationRecord
     未購入: 0,
     購入済: 1,
     当日のみ: 2,
-    チケットレス: 3
+    チケ無し: 3
   }
 
   def ticket_sale_date_validation
