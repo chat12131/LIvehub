@@ -2,15 +2,85 @@ ja:
   activerecord:
     models:
       user: ユーザー
-      post: 投稿
+      artist: アーティスト
+      category: カテゴリ
+      good: 商品
+      live_record: ライブ記録
+      live_schedule: ライブスケジュール
+      member: メンバー
+      user: ユーザー
+      venue: 会場
     attributes:
       user:
         username: ユーザーネーム
         email: メールアドレス
         password: パスワード
-      post:
-        title: タイトル
-        content: 内容
+      artist:
+        name: アーティスト名
+        nickname: ニックネーム
+        image: 画像
+        genre: ジャンル
+        user: ユーザー
+        memo: メモ
+        nickname_mode: ニックネームモード
+        favorited: お気に入り
+        founding_date: 結成日
+        first_show_date: 初ライブ日
+
+      category:
+        name: カテゴリー名
+        user: ユーザー
+
+      good:
+        category: カテゴリ
+        name: グッズ名
+        quantity: 個数
+        price: 価格
+        user: ユーザー
+        live_record_id: ライブ記録ID
+        artist: アーティスト
+        member: メンバー
+        date: 購入日
+
+      live_record:
+        name: イベント名
+        artist: アーティスト
+        date: 日付
+        start_time: 開始時間
+        venue_id: 会場ID
+        ticket_price: チケット価格
+        drink_price: ドリンク価格
+        timetable: タイムテーブル
+        announcement_image: お知らせ画像
+        memo: メモ
+
+      live_schedule:
+        name: イベント名
+        artist: アーティスト
+        date: 日付
+        open_time: 開場時間
+        start_time: 開演時間
+        venue: 会場
+        ticket_status: チケットステータス
+        ticket_price: チケット価格
+        drink_price: ドリンク価格
+        ticket_sale_date: チケット販売日
+        timetable: タイムテーブル
+        announcement_image: お知らせ画像
+        memo: メモ
+
+      member:
+        name: メンバー名
+        artist: アーティスト
+
+      venue:
+        name: 会場名
+        google_place_id: GoogleプレイスID
+        user_id: ユーザーID
+        latitude: 緯度
+        longitude: 経度
+        area: エリア
+
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
