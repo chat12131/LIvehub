@@ -3,6 +3,7 @@
     <div class="text-center display-4 mb-4">
       グッズ記録
     </div>
+    <%= render 'shared/error_messages', resource: @good %>
     <%= form_for @good do |f| %>
       <div class="form-group">
         <%= f.label :商品名 %>
@@ -10,7 +11,7 @@
       </div>
       <div class="form-group">
         <%= f.label :カテゴリー %> <span class='text-danger'>*</span>
-        <%= f.select :category_id, @categories.map { |c| [c.name, c.id] }, { include_blank: true }, { class: "form-control text-center", id: "category_selector" } %>
+        <%= f.select :category_id, @categories.map { |c| [c.name, c.id] }, { include_blank: true, selected: @selected_category_id }, { class: "form-control text-center", id: "category_selector" } %>
       </div>
       <%= f.fields_for :category do |cf| %>
         <div class="form-group" id="new-categories" style="display:none">

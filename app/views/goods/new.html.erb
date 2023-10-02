@@ -3,6 +3,7 @@
     <div class="text-center display-4 mb-4">
       グッズ記録
     </div>
+    <%= render 'shared/error_messages', resource: @good %>
     <%= form_for @good do |f| %>
       <div class="form-group">
         <%= f.label :商品名 %>
