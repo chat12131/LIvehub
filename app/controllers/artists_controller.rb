@@ -12,7 +12,7 @@ class ArtistsController < ApplicationController
       "ニックネーム" => @artist.nickname,
       "ジャンル" => @artist.genre,
       "結成日" => @artist.founding_date,
-      "初めて見た日" => @artist.first_show_date,
+      "初ライブ日" => @artist.first_show_date,
       "メモ" => @artist.memo
     }.select { |_, value| value.present? }
   end
