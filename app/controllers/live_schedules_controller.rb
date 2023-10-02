@@ -36,6 +36,7 @@ class LiveSchedulesController < ApplicationController
     end
 
     if @live_schedule.date.nil?
+      @live_schedule.errors.add(:date, "を入力してください")
       render :new
       return
     end
