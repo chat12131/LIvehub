@@ -78,3 +78,35 @@
   background-color: rgba(110, 109, 109, 0.2);
 }
 
+@media (max-width: 768px) {
+  .links-top {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 90%;
+  }
+
+  .links {
+    padding-top: 35px;
+  }
+
+  .round-button {
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+  }
+
+
+  .links-bottom {
+    margin-top: 30px;
+  }
+
+  .square-button {
+    width: 80%;
+    padding: 0;
+  }
+
+  .top-word h1 {
+    font-size: 60px;
+  }
+}
