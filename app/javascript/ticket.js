@@ -25,7 +25,7 @@ document.addEventListener('turbolinks:load', function() {
       ticketSaleDateField.parentElement.style.display = 'none';
     }
 
-    if (selectedValue === "チケットレス") {
+    if (selectedValue === "チケ無し") {
       ticketPriceField.parentElement.style.display = 'none';
     } else {
       ticketPriceField.parentElement.style.display = 'block';
