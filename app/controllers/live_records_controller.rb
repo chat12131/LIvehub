@@ -6,14 +6,16 @@ class LiveRecordsController < ApplicationController
     @live_records = current_user.live_records.where("date <= ?", Time.zone.today).order(date: :desc)
   end
 
-  def show; end
+  def show
+  end
 
   def new
     @live_record = LiveRecord.new
     @live_record.build_venue
   end
 
-  def edit; end
+  def edit
+ end
 
   def create
     @live_record = current_user.live_records.build(live_record_params)

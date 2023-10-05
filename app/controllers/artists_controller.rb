@@ -21,7 +21,8 @@ class ArtistsController < ApplicationController
     @artist = Artist.new
   end
 
-  def edit; end
+  def edit
+  end
 
   def create
     @artist = current_user.artists.build(artist_params)

@@ -15,7 +15,8 @@ class LiveSchedulesController < ApplicationController
     @live_schedule.build_venue
   end
 
-  def edit; end
+  def edit
+  end
 
   def create
     @live_schedule = current_user.live_schedules.build(live_schedule_params)
