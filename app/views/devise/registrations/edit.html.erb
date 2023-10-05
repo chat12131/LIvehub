@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-group' }) do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
+          <%= render "shared/error_messages", resource: resource %>
           <div class="mb-3">
           <div class="label-box__inner text-center">
               <label class="mealpicture">アイコンを追加 <i class="fas fa-upload"></i>

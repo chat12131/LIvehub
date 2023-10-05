@@ -1,6 +1,8 @@
 class StatisticsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    today = Date.today
+    today = Time.zone.today
     this_month = today.month
 
     # ライブ記録の総数
@@ -49,10 +51,9 @@ class StatisticsController < ApplicationController
     # ジャンル別ライブ回数
     @genre_counts = current_user.live_records.joins(:artist).group('artists.genre').count
 
-     # 週別ライブ数（7日分のデータ）
+    # 週別ライブ数（7日分のデータ）
     @weekly_live_counts = {}
-    @weekly_live_counts = current_user.live_records.where(date: 6.months.ago..Time.zone.now).group_by { |record| record.date.wday }.map { |wday, records| [wday, records.count] }.to_h
-
+    @weekly_live_counts = current_user.live_records.where(date: 6.months.ago..Time.zone.now).group_by { |record| record.date.wday }.transform_values(&:count)
 
     # グッズカテゴリ別支出
     @category_expenses = current_user.goods.joins(:category).group('categories.name').sum('goods.price * goods.quantity')

@@ -15,7 +15,6 @@ class LiveSchedule < ApplicationRecord
   validate :start_time_after_open_time
   validate :ticket_sale_time_before_start_time_on_same_day
 
-
   enum ticket_status: {
     未購入: 0,
     購入済: 1,
@@ -51,15 +50,16 @@ class LiveSchedule < ApplicationRecord
   def start_time_after_open_time
     return if open_time.blank? || start_time.blank?
 
-    if open_time > start_time
-      errors.add(:start_time, "は開場時間よりも後である必要があります。")
-    end
+    return unless open_time > start_time
+
+    errors.add(:start_time, "は開場時間よりも後である必要があります。")
   end
+
   def ticket_sale_time_before_start_time_on_same_day
     return if ticket_sale_date.blank? || start_time.blank?
 
-    if ticket_sale_date.to_date == date && ticket_sale_date.strftime('%H:%M:%S') > start_time.strftime('%H:%M:%S')
-      errors.add(:ticket_sale_date, "はライブの開始時刻よりも早く設定する必要があります。")
-    end
+    return unless ticket_sale_date.to_date == date && ticket_sale_date.strftime('%H:%M:%S') > start_time.strftime('%H:%M:%S')
+
+    errors.add(:ticket_sale_date, "はライブの開始時刻よりも早く設定する必要があります。")
   end
 end

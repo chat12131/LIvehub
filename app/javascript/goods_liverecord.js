@@ -26,7 +26,6 @@ document.addEventListener("turbolinks:load", function() {
           $memberSelector.html(`<option value="">-アーティストを選択してください-</option>`).prop("disabled", true);
         }
       }).fail(function(jqxhr, textStatus, error) {
-        console.error("Request failed:", textStatus, error);
       });
     }
   });

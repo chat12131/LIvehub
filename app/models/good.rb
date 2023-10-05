@@ -6,7 +6,7 @@ class Good < ApplicationRecord
   belongs_to :category
   accepts_nested_attributes_for :category
   validates :price, numericality: { greater_than_or_equal_to: 0, message: "はマイナスの値を設定できません。", allow_blank: true }
-  validates :quantity, numericality: { greater_than_or_equal_to: 1, message: "は1以上を設定してください。"}
+  validates :quantity, numericality: { greater_than_or_equal_to: 1, message: "は1以上を設定してください。" }
   validates :name, length: { maximum: 15, message: "は15文字以内で入力してください。" }
   validate :date_cannot_be_in_the_future
 
