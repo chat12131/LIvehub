@@ -25,7 +25,6 @@ document.addEventListener("turbolinks:load", function() {
         }
       }).fail(function(jqxhr, textStatus, error) {
           const err = textStatus + ", " + error;
-          console.error("Error fetching members:", err);
       });
     } else {
       $memberSelector.html(`<option value="">-アーティストを選択してください-</option>`).prop("disabled", true);
@@ -45,6 +44,5 @@ document.addEventListener("turbolinks:load", function() {
     });
 
   } else {
-    console.log("artistSelector NOT found");
   }
 });
