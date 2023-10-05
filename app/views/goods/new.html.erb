@@ -4,7 +4,7 @@
       グッズ記録
     </div>
     <%= render 'shared/error_messages', resource: @good %>
-    <%= form_for @good do |f| %>
+    <%= form_with model: @good do |f| %>
       <div class="form-group">
         <%= f.label :商品名 %>
         <%= f.text_field :name, class: "form-control" %>
