@@ -1,4 +1,6 @@
 class StatisticsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     today = Date.today
     this_month = today.month
@@ -52,7 +54,6 @@ class StatisticsController < ApplicationController
      # 週別ライブ数（7日分のデータ）
     @weekly_live_counts = {}
     @weekly_live_counts = current_user.live_records.where(date: 6.months.ago..Time.zone.now).group_by { |record| record.date.wday }.map { |wday, records| [wday, records.count] }.to_h
-
 
     # グッズカテゴリ別支出
     @category_expenses = current_user.goods.joins(:category).group('categories.name').sum('goods.price * goods.quantity')
