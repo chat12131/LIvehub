@@ -19,7 +19,7 @@ https://livehub-44b32f9de40f.herokuapp.com
 | デプロイ         | Heoku |
 | データベース     | JawsDB MySQL |
 | バージョン管理   | Git/GitHub |
-| 外部API         | Google Maps API,OpenWeather API |
+| 外部API         | Google Maps API. OpenWeather API |
 
 
 ## ER図
