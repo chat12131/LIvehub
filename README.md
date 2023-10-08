@@ -46,7 +46,7 @@ https://livehub-44b32f9de40f.herokuapp.com
 ## その他機能詳細
 
 
-![アーティスト詳細](./app/assets/images/artist_s.png) 
+![アーティスト詳細](./app/assets/images/aritst.gif) 
 
 
 ハートマークをクリックでお気に入りを切替可能。
@@ -54,13 +54,10 @@ https://livehub-44b32f9de40f.herokuapp.com
     アーティストのshowページでは、結成日と初ライブ日からの経過日数を表示。
 
 
-![ライブ記録](./app/assets/images/live_r_s.png)
+![ライブ記録とグッズ記録](./app/assets/images/goods.gif)
 
 ライブ予定、記録詳細には、会場へのGoogle Mapsのリンクを表示。
 ライブ記録ではグッズ作成ページへのリンクもあり、グッズ記録でライブが自動選択される。
-
-
-![グッズ記録作成](./app/assets/images/goods.png)
 
 
  グッズカテゴリーは、使用日順に表示され、その他を選択することで新しいカテゴリーを追加することも可能。
