@@ -11,7 +11,7 @@ RSpec.describe "Artists#favorites" do
   end
 
   describe "GET /artists/favorites" do
-    it "is successful" do
+    it 'レスポンスが正しく返されること' do
       expect(response).to be_successful
     end
 
