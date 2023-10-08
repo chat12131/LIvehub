@@ -2,15 +2,20 @@
   <div class="card">
     <div class="card-body live-show">
       <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
         <%= link_to edit_live_schedule_path(@live_schedule) do %>
           <i class="fas fa-edit"></i>
         <% end %>
+        </div>
         <div class="text-center display-4">
           ライブ予定
         </div>
         <%= link_to @live_schedule, method: :delete, data: { confirm: '本当に削除しますか？' } do %>
           <i class="fas fa-trash"></i>
         <% end %>
+      </div>
+      <div class="text-center mb-4" id="weather-section" data-weather-api-key="<%= ENV['weather_API'] %>">
+        <div id="weather-report-area"></div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-4 text-center">
@@ -36,7 +41,9 @@
       <div class="form-row d-flex justify-content-center">
         <div class="form-group col-md-4 text-center">
           <label>日付</label>
-          <p><%= @live_schedule.date %></p>
+          <p id="live-schedule-date" data-date="<%= @live_schedule.date %>">
+            <%= @live_schedule.date %>
+          </p>
         </div>
         <% if @live_schedule.open_time? %>
           <div class="form-group col-md-4 text-center">
@@ -100,3 +107,54 @@
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener("turbolinks:load", function() {
+  var API_KEY = $('#weather-section').data('weather-api-key');
+  var item_id = 'lat=' + <%= @live_schedule.venue.latitude %> + '&lon=' + <%= @live_schedule.venue.longitude %>;
+
+  var url = 'https://api.openweathermap.org/data/2.5/forecast?' + item_id + '&lang=ja&units=metric&appid=' + API_KEY;
+
+  $.ajax({
+    url: url,
+    dataType: "json",
+    type: 'GET',
+  })
+  .done(function(data) {
+    var insertHTML = buildWeatherReport(data);
+    $('#weather-report-area').html(insertHTML);
+  })
+  .fail(function() {
+  });
+});
+
+function buildWeatherReport(data) {
+  var liveScheduleDate = new Date($('#live-schedule-date').data('date'));
+  var targetWeather;
+  for (var i = 0; i < data.list.length; i++) {
+    var weatherDate = new Date(data.list[i].dt_txt);
+    if (liveScheduleDate.getDate() === weatherDate.getDate() &&
+        liveScheduleDate.getMonth() === weatherDate.getMonth() &&
+        liveScheduleDate.getFullYear() === weatherDate.getFullYear()) {
+      targetWeather = data.list[i];
+      break;
+    }
+  }
+
+  if (!targetWeather) {
+    return ;
+  }
+
+  var icon = targetWeather.weather[0].icon;
+  var precipitationProbability = targetWeather.pop ? (targetWeather.pop * 100) : 0;
+
+  var html =
+  '<div class="weather-report">' +
+    '<img src="https://openweathermap.org/img/w/' + icon + '.png">' +
+    '<div class="weather-temp">' + Math.round(targetWeather.main.temp) + '℃</div>' +
+    '<div class="weather-precipitation">降水確率: ' + precipitationProbability + '%</div>' +
+  '</div>';
+
+  return html;
+}
+</script>
