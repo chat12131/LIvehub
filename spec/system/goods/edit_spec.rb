@@ -5,11 +5,9 @@ RSpec.describe "Goods", :js do
   let(:category) { create(:category, user: user) }
   let(:good) { create(:good, user: user, category: category) }
 
-
   before do
     sign_in user
     visit edit_good_path(good)
-
   end
 
   it "既存のグッズの情報が表示されること" do

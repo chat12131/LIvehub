@@ -19,7 +19,6 @@ RSpec.describe "Goods", :js do
   end
 
   it "何も入力しない場合は作成されないこと" do
-
     click_on "作成"
 
     expect(page).to have_text("保存されませんでした")
