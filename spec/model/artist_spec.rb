@@ -2,37 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Artist, type: :model do
   describe "バリデーション" do
-    subject(:artist) { described_class.new(name: "Sample Artist", user: user) }
+    subject(:artist) { build(:artist) }
 
-    let!(:user) { create(:user) }
-
-    it "正しい属性を持つ場合は有効である" do
-      expect(artist).to be_valid
-    end
-
-    it "名前がない場合は無効である" do
-      artist.name = nil
-      expect(artist).not_to be_valid
-      expect(artist.errors.details[:name]).to include({ error: :blank })
-    end
-
-    it "名前が25文字より長い場合は無効である" do
-      artist.name = "a" * 26
-      expect(artist).not_to be_valid
-      expect(artist.errors.details[:name]).to include({ error: :too_long, count: 25 })
-    end
-
-    it "ニックネームが10文字より長い場合は無効である" do
-      artist.nickname = "a" * 11
-      expect(artist).not_to be_valid
-      expect(artist.errors.details[:nickname]).to include({ error: :too_long, count: 10 })
-    end
-
-    it "ユーザーが関連付けられていない場合は無効である" do
-      artist.user = nil
-      expect(artist).not_to be_valid
-      expect(artist.errors.details[:user]).to include({ error: :blank })
-    end
+    it { should validate_presence_of(:name) }
+    it { should validate_length_of(:name).is_at_most(25) }
+    it { should validate_length_of(:nickname).is_at_most(10) }
+    it { should belong_to(:user) }
+    it { should have_many(:members).dependent(:destroy) }
+    it { should have_many(:live_records).dependent(:nullify) }
+    it { should have_many(:live_schedules).dependent(:nullify) }
 
     context "ニックネームモードがオンのとき" do
       before { artist.nickname_mode = true }
@@ -48,7 +26,7 @@ RSpec.describe Artist, type: :model do
       end
     end
 
-    context "dates validation" do
+    context "日付のバリデーション" do
       it "結成日が未来の場合は無効である" do
         artist.founding_date = Date.tomorrow
         expect(artist).not_to be_valid
@@ -63,6 +41,32 @@ RSpec.describe Artist, type: :model do
       it "初めて見た日が未来の場合は無効である" do
         artist.first_show_date = Date.tomorrow
         expect(artist).not_to be_valid
+      end
+    end
+  end
+
+  describe "表示名関連のメソッド" do
+    let(:artist) { build(:artist, name: "SampleName", nickname: "SampleNickname") }
+
+    context "ニックネームモードがオンでニックネームが設定されている場合" do
+      before { artist.nickname_mode = true }
+
+      it "ニックネームを返す" do
+        expect(artist.display_name).to eq "SampleNickname"
+      end
+    end
+
+    context "ニックネームモードがオフ" do
+      before { artist.nickname_mode = false }
+
+      it "ニックネームを返す" do
+        expect(artist.non_display_name).to eq "SampleNickname"
+      end
+    end
+
+    context "non_display_nameが存在する場合" do
+      it "display_nameとnon_display_nameの組み合わせを返す" do
+        expect(artist.combined_name).to eq "SampleName(SampleNickname)"
       end
     end
   end
