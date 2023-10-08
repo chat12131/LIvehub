@@ -3,7 +3,7 @@ FactoryBot.define do
     name { "Sample Good" }
     price { 1000 }
     quantity { 1 }
-    date { Date.today }
+    date { Time.zone.today }
     user
     category
     artist
