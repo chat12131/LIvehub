@@ -16,17 +16,17 @@ RSpec.describe User, type: :model do
   end
 
   describe '.guest' do
-    it 'returns a guest user' do
+    it 'ゲストユーザーが返されること' do
       guest = User.guest
       expect(guest.username).to eq 'ゲスト'
       expect(guest.email).to eq 'guest@example.com'
     end
 
-    it 'creates a new guest user if one does not already exist' do
+    it 'ゲストが存在しない時に作成されること' do
       expect { User.guest }.to change { User.count }.by(1)
     end
 
-    it 'does not create a new guest user if one already exists' do
+    it 'ゲストが存在する場合は作成されないこと' do
       User.create!(username: 'ゲスト', email: 'guest@example.com', password: 'password')
       expect { User.guest }.not_to change { User.count }
     end
