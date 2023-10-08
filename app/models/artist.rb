@@ -3,6 +3,7 @@ class Artist < ApplicationRecord
   has_many :members, dependent: :destroy
   has_many :live_records, dependent: :nullify
   has_many :live_schedules, dependent: :nullify
+  has_many :goods, dependent: :nullify
   accepts_nested_attributes_for :members, allow_destroy: true, reject_if: :all_blank
   mount_uploader :image, AvatarUploader
   validates :name, presence: true, length: { maximum: 25 }
