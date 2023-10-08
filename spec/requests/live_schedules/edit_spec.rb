@@ -10,6 +10,10 @@ RSpec.describe "LiveSchedules", :js do
     get edit_live_schedule_path(live_schedule)
   end
 
+  it 'レスポンスが正しく返されること' do
+    expect(response).to be_successful
+  end
+
   describe "スケジュールの編集" do
     it "編集されること" do
       patch live_schedule_path(live_schedule), params: {
