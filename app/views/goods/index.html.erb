@@ -28,6 +28,9 @@
                 </div>
             </div>
               <div class="d-flex flex-wrap">
+                <% if good.name? %>
+                  <small class="mr-3"><%= good.name %></small>
+                <% end %>
                 <% if good.price.present? %>
                   <small class="mr-3">値段: <%= good.price %></small>
                   <small class="mr-3">合計: <%= good.quantity * good.price %></small>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Statistics", type: :request do
+RSpec.describe "Statistics" do
   describe "GET /statistics" do
     let(:user) { create(:user) }
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Header features' do
+RSpec.describe 'Header' do
   context 'ログイン中の場合' do
     let(:user) { create(:user) }
 
@@ -31,19 +31,19 @@ RSpec.describe 'Header features' do
 
     it 'マイページのリンクが正しいこと' do
       click_on user.username
-      click_link 'マイページ'
+      first(:link, 'マイページ').click
       expect(page).to have_current_path(mypage_path)
     end
 
     it '登録アーティストのリンクが正しいこと' do
       click_on user.username
-      click_link '登録アーティスト'
+      first(:link, '登録アーティスト').click
       expect(page).to have_current_path(artists_path)
     end
 
     it 'ログアウトが機能すること' do
       click_on user.username
-      click_link 'ログアウト'
+      first(:link, 'ログアウト').click
       expect(page).to have_current_path(root_path)
     end
   end
@@ -54,12 +54,12 @@ RSpec.describe 'Header features' do
     end
 
     it '新規登録が正しいこと' do
-      click_link '新規登録'
+      first(:link, '新規登録').click
       expect(page).to have_current_path(new_user_registration_path)
     end
 
-    it 'ログインが正しいこと' do
-      click_link 'ログイン'
+    it 'ログインが正しいこと', :js do
+      first(:link, 'ログイン').click
       expect(page).to have_current_path(new_user_session_path)
     end
   end

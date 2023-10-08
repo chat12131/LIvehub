@@ -11,6 +11,10 @@ RSpec.describe 'ユーザー編集' do
       get edit_user_registration_path
     end
 
+    it 'レスポンスが正しく返されること' do
+      expect(response).to be_successful
+    end
+
     it '現在のパスワードなしではユーザーネームとメールアドレスが更新されない' do
       put user_registration_path, params: { user: { username: new_username, email: new_email } }
       expect(user.reload.username).not_to eq(new_username)
