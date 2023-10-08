@@ -54,11 +54,12 @@ https://livehub-44b32f9de40f.herokuapp.com
     アーティストのshowページでは、結成日と初ライブ日からの経過日数を表示。
 
 
-![ライブ記録とグッズ記録](./app/assets/images/goods.gif)
+![ライブ記録](./app/assets/images/goods.gif)
 
 ライブ予定、記録詳細には、会場へのGoogle Mapsのリンクを表示。
 ライブ記録ではグッズ作成ページへのリンクもあり、グッズ記録でライブが自動選択される。
 
+![グッズ記録](./app/assets/images/category.gif)
 
  グッズカテゴリーは、使用日順に表示され、その他を選択することで新しいカテゴリーを追加することも可能。
     グッズ記録一覧には、合計金額が表示される。
