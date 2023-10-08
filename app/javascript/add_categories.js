@@ -2,7 +2,6 @@ document.addEventListener("turbolinks:load", function() {
 
     function toggleNewCategoryField() {
         const selectedText = $('#category_selector option:selected').text();
-        console.log('Selected:', selectedText);
 
         if (selectedText === 'その他') {
             $('#new-categories').css('display', 'block');
