@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Goods", type: :system do
+RSpec.describe "Goods" do
   let(:user) { create(:user) }
   let(:category) { create(:category, user: user) }
   let(:artist) { create(:artist, user: user) }
@@ -43,7 +43,7 @@ RSpec.describe "Goods", type: :system do
 
   it "グッズの編集ページに正しく遷移すること", :js do
     find(".fa-edit").click
-    expect(current_path).to eq edit_good_path(good)
+    expect(page).to have_current_path edit_good_path(good), ignore_query: true
   end
 
   it "グッズの削除時にポップアップが表示されること", :js do

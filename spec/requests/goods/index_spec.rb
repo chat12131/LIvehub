@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Goods", type: :request do
+RSpec.describe "Goods" do
   let(:user) { create(:user) }
   let(:category) { create(:category, user: user) }
   let(:artist) { create(:artist, user: user) }
