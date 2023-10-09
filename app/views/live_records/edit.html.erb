@@ -16,8 +16,7 @@
               <%= f.label :artist_id, "アーティスト" %>
               <%= link_to '新しいアーティストを追加', new_artist_path(from: request.fullpath), class: 'btn btn-secondary btn-sm mb-1' %>
             </div>
-            <% selected_artist_id = params[:selected_artist_id] || '' %>
-            <%= f.select :artist_id, current_user.artists.all.collect { |artist| [artist.display_name, artist.id] }, { include_blank: '-アーティストを選択しない-', selected: selected_artist_id }, class: "form-control" %>
+            <%= f.select :artist_id, current_user.artists.all.collect { |artist| [artist.display_name, artist.id] }, { include_blank: '-アーティストを選択しない-', selected:  @live_record.artist_id || '' }, class: "form-control" %>
           </div>
         </div>
         <div class="form-row">
