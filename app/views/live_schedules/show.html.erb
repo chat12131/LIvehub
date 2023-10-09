@@ -14,7 +14,7 @@
           <i class="fas fa-trash"></i>
         <% end %>
       </div>
-      <div class="text-center mb-4" id="weather-section" data-weather-api-key="<%= ENV['weather_API'] %>">
+      <div class="text-center mb-2" id="weather-section" data-weather-api-key="<%= ENV['weather_API'] %>" data-latitude="<%= @live_schedule.venue.latitude %>" data-longitude="<%= @live_schedule.venue.longitude %>">
         <div id="weather-report-area"></div>
       </div>
       <div class="form-row">
@@ -57,6 +57,7 @@
             <p><%= @live_schedule.start_time.strftime("%H:%M") %></p>
           </div>
         <% end %>
+        <div id="live-time-info" data-time="<%= @live_schedule.start_time ? @live_schedule.start_time.strftime("%H:%M") : (@live_schedule.open_time ? @live_schedule.open_time.strftime("%H:%M") : "12:00") %>"></div>
       </div>
       <% if @live_schedule.start_time? %>
         <div class="form-group text-center">
@@ -111,8 +112,14 @@
 <script>
 document.addEventListener("turbolinks:load", function() {
   var API_KEY = $('#weather-section').data('weather-api-key');
-  var item_id = 'lat=' + <%= @live_schedule.venue.latitude %> + '&lon=' + <%= @live_schedule.venue.longitude %>;
+  var latitude = $('#weather-section').data('latitude');
+  var longitude = $('#weather-section').data('longitude');
 
+  if (!latitude || !longitude) {
+    return;
+  }
+
+  var item_id = 'lat=' + latitude + '&lon=' + longitude;
   var url = 'https://api.openweathermap.org/data/2.5/forecast?' + item_id + '&lang=ja&units=metric&appid=' + API_KEY;
 
   $.ajax({
@@ -130,22 +137,35 @@ document.addEventListener("turbolinks:load", function() {
 
 function buildWeatherReport(data) {
   var liveScheduleDate = new Date($('#live-schedule-date').data('date'));
-  var targetWeather;
+
+  // ターゲットとなる時間を取得
+  var targetTime = $('#live-time-info').data('time');
+  var targetHour = parseInt(targetTime.split(":")[0], 10);
+
+  var nearestDiff = Number.MAX_VALUE;
+
   for (var i = 0; i < data.list.length; i++) {
     var weatherDate = new Date(data.list[i].dt_txt);
+
     if (liveScheduleDate.getDate() === weatherDate.getDate() &&
         liveScheduleDate.getMonth() === weatherDate.getMonth() &&
         liveScheduleDate.getFullYear() === weatherDate.getFullYear()) {
-      targetWeather = data.list[i];
-      break;
+
+      var hourDiff = Math.abs(weatherDate.getHours() - targetHour);
+
+      if(hourDiff < nearestDiff) {
+        nearestDiff = hourDiff;
+        targetWeather = data.list[i];
+      }
     }
   }
+
 
   if (!targetWeather) {
     return ;
   }
 
-  var icon = targetWeather.weather[0].icon;
+  var icon = targetWeather.weather[0].icon.replace('n', 'd');
   var precipitationProbability = targetWeather.pop ? (targetWeather.pop * 100) : 0;
 
   var html =
