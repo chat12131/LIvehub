@@ -138,7 +138,6 @@ document.addEventListener("turbolinks:load", function() {
 function buildWeatherReport(data) {
   var liveScheduleDate = new Date($('#live-schedule-date').data('date'));
 
-  // ターゲットとなる時間を取得
   var targetTime = $('#live-time-info').data('time');
   var targetHour = parseInt(targetTime.split(":")[0], 10);
 
