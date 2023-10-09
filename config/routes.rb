@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     collection do
       get :favorites
     end
-    resources :members, only: [:index]
+    resources :members, only: [:index, :destroy]
     member do
       post 'toggle_favorite'
     end
