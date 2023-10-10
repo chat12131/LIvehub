@@ -110,7 +110,9 @@
 </div>
 
 <script>
+
 document.addEventListener("turbolinks:load", function() {
+  resetWeatherVariables();
   var API_KEY = $('#weather-section').data('weather-api-key');
   var latitude = $('#weather-section').data('latitude');
   var longitude = $('#weather-section').data('longitude');
@@ -134,6 +136,11 @@ document.addEventListener("turbolinks:load", function() {
   .fail(function() {
   });
 });
+
+function resetWeatherVariables() {
+  targetWeather = null;
+  $('#weather-report-area').empty();
+}
 
 function buildWeatherReport(data) {
   var liveScheduleDate = new Date($('#live-schedule-date').data('date'));
