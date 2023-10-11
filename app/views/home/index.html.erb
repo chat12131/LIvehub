@@ -17,6 +17,7 @@
         <div class="links-top">
           <%= link_to "新規登録", new_user_registration_path, class: "round-button" %>
           <%= link_to "ログイン", new_user_session_path, class: "round-button" %>
+          <%= link_to "ゲスト用", users_guest_sign_in_path, method: :post, class: "round-button" %>
         </div>
       <% end %>
     </div>
