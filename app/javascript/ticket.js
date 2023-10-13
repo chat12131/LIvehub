@@ -18,14 +18,14 @@ document.addEventListener('turbolinks:load', function() {
 
     const visibleFields = [];
 
-    if (selectedValue === "未購入") {
+    if (selectedValue === '未購入') {
       ticketSaleDateField.parentElement.style.display = 'block';
       visibleFields.push(ticketSaleDateField.parentElement);
     } else {
       ticketSaleDateField.parentElement.style.display = 'none';
     }
 
-    if (selectedValue === "チケ無し") {
+    if (selectedValue === 'チケ無し') {
       ticketPriceField.parentElement.style.display = 'none';
     } else {
       ticketPriceField.parentElement.style.display = 'block';
@@ -52,7 +52,7 @@ document.addEventListener('turbolinks:load', function() {
 
     flatpickr("[class='flatpickr']", {
       enableTime: true,
-      dateFormat: "Y-m-d H:i",
+      dateFormat: 'Y-m-d H:i',
       disableMobile: true,
       'locale': 'ja'
     });
