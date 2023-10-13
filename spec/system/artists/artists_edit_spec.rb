@@ -15,7 +15,7 @@ RSpec.describe "Artists" do
         fill_in "アーティスト名", with: "更新されたアーティスト名"
         fill_in "ニックネーム", with: "新しいニックネーム"
         select "Jpop", from: "ジャンル"
-        click_button "更新"
+        click_button "保存"
         expect(page).to have_content("更新されたアーティスト名")
         expect(page).to have_content("新しいニックネーム")
       end
@@ -24,8 +24,8 @@ RSpec.describe "Artists" do
     context "無効な情報を入力したとき" do
       it "エラーメッセージが表示されること" do
         fill_in "アーティスト名", with: ""
-        click_button "更新"
-        expect(page).to have_button("更新")
+        click_button "保存"
+        expect(page).to have_button("保存")
       end
     end
 
