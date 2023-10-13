@@ -14,7 +14,7 @@
           <% end %>
         </div>
         <div>
-          <%= link_to @live_record, method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+          <%= link_to @live_record, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
             <i class="fas fa-trash"></i>
           <% end %>
         </div>
@@ -69,13 +69,13 @@
         <% if @live_record.timetable.present? %>
           <div class="form-group col-md-6 text-center">
             <label>タイムテーブル画像</label>
-            <%= image_tag @live_record.timetable.url, size: '400x400', class: 'img-fluid' %>
+            <%= image_tag @live_record.timetable.url, size: "400x400", class: "img-fluid" %>
           </div>
         <% end %>
         <% if @live_record.announcement_image.present? %>
           <div class="form-group col-md-6 text-center">
             <label>告知画像</label>
-            <%= image_tag @live_record.announcement_image.url, size: '400x400', class: 'img-fluid' %>
+            <%= image_tag @live_record.announcement_image.url, size: "400x400", class: "img-fluid" %>
           </div>
         <% end %>
       </div>

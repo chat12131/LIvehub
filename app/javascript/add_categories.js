@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener('turbolinks:load', function() {
 
     function toggleNewCategoryField() {
         const selectedText = $('#category_selector option:selected').text();

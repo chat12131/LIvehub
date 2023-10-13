@@ -1,10 +1,10 @@
 import 'bootstrap';
-import flatpickr from "flatpickr";
+import flatpickr from 'flatpickr';
 import '../stylesheets/application';
 import '../../assets/stylesheets/user.scss';
-import "../artists";
-import "../member";
-import "../venue";
+import '../artists';
+import '../member';
+import '../venue';
 import '../initialize_flatpickr';
 import '../ticket';
 import '../add_categories';
@@ -16,10 +16,10 @@ import '../goods_liverecord';
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+import Rails from '@rails/ujs'
+import Turbolinks from 'turbolinks'
+import * as ActiveStorage from '@rails/activestorage'
+import 'channels'
 
 Rails.start()
 Turbolinks.start()

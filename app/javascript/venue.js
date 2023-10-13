@@ -17,14 +17,13 @@ window.initMap = function() {
         const place = autocomplete.getPlace();
 
         if (!place.geometry) {
-            console.error("Error: The place doesn't have geometry information.");
             return;
         }
         input.value = place.name;
 
-        let area = "";
+        let area = '';
         place.address_components.forEach(component => {
-            if (component.types.includes("locality")) {
+            if (component.types.includes('locality')) {
                 area = component.long_name;
             }
         });
@@ -36,20 +35,20 @@ window.initMap = function() {
         const latitude = place.geometry.location.lat();
         const longitude = place.geometry.location.lng();
 
-        document.getElementById("nameField").value = place.name;
-        document.getElementById("google_place_idField").value = place.place_id;
-        document.getElementById("areaField").value = area;
-        document.getElementById("latitudeField").value = latitude;
-        document.getElementById("longitudeField").value = longitude;
+        document.getElementById('nameField').value = place.name;
+        document.getElementById('google_place_idField').value = place.place_id;
+        document.getElementById('areaField').value = area;
+        document.getElementById('latitudeField').value = latitude;
+        document.getElementById('longitudeField').value = longitude;
     });
 
 
     input.addEventListener('input', function() {
-        document.getElementById("nameField").value = '';
-        document.getElementById("google_place_idField").value = '';
-        document.getElementById("areaField").value = '';
-        document.getElementById("latitudeField").value = '';
-        document.getElementById("longitudeField").value = '';
+        document.getElementById('nameField').value = '';
+        document.getElementById('google_place_idField').value = '';
+        document.getElementById('areaField').value = '';
+        document.getElementById('latitudeField').value = '';
+        document.getElementById('longitudeField').value = '';
     });
 
 

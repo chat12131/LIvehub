@@ -1,8 +1,8 @@
-document.addEventListener("turbolinks:load", () => {
-  flatpickr(".timepicker", {
+document.addEventListener('turbolinks:load', () => {
+  flatpickr('.timepicker', {
     noCalendar: true,
     enableTime: true,
-    dateFormat: "H:i",
+    dateFormat: 'H:i',
     disableMobile: true,
     'locale': 'ja'
   });

@@ -4,34 +4,34 @@
       <div class="text-center display-4 mb-4">
         ライブ記録
       </div>
-      <%= render 'shared/error_messages', resource: live_record %>
+      <%= render "shared/error_messages", resource: live_record %>
       <%= form_with model: live_record, html: { multipart: true } do |f| %>
         <div class="form-row">
           <div class="form-group col-md-6 text-center">
             <%= f.label :name, "イベント名" %>
-            <%= f.text_field :name, class: 'form-control', placeholder: '入力しない場合は日付と会場のエリアになります' %>
+            <%= f.text_field :name, class: "form-control", placeholder: "入力しない場合は日付と会場のエリアになります" %>
           </div>
           <div class="form-group col-md-6">
             <div class="d-flex justify-content-between align-items-center text-center">
               <%= f.label :artist_id, "アーティスト" %>
-              <%= link_to '新しいアーティストを追加', new_artist_path(from: request.fullpath), class: 'btn btn-secondary btn-sm mb-1' %>
+              <%= link_to "新しいアーティストを追加", new_artist_path(from: request.fullpath), class: "btn btn-secondary btn-sm mb-1" %>
             </div>
-            <%= f.select :artist_id, current_user.artists.all.collect { |artist| [artist.display_name, artist.id] }, { include_blank: '-アーティストを選択しない-', selected:  live_record.artist_id || '' }, class: "form-control" %>
+            <%= f.select :artist_id, current_user.artists.all.collect { |artist| [artist.display_name, artist.id] }, { include_blank: "-アーティストを選択しない-", selected:  live_record.artist_id || "" }, class: "form-control" %>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6 text-center">
-            <%= f.label :date, "日付" %> <span class='text-danger'>*</span>
-            <%= f.date_field :date, class: 'form-control' %>
+            <%= f.label :date, "日付" %> <span class="text-danger">*</span>
+            <%= f.date_field :date, class: "form-control" %>
           </div>
           <div class="form-group col-md-6 text-center">
             <%= f.label :start_time, "START" %>
-            <%= f.text_field :start_time, class: 'timepicker', placeholder: '時間を選択可能' %>
+            <%= f.text_field :start_time, class: "timepicker", placeholder: "時間を選択可能" %>
           </div>
         </div>
         <%= f.fields_for :venue do |venue_fields| %>
           <div class="form-group text-center">
-            <label for="venue-name-display">会場 <span class='text-danger'>*</span></label>
+            <label for="venue-name-display">会場 <span class="text-danger">*</span></label>
             <input type="text" id="venue-name-display" class="form-control Autocomplete" placeholder="会場の名前を入力" value="<%= live_record.venue.name %>">
             <%= venue_fields.hidden_field :name, id: "nameField" %>
             <%= venue_fields.hidden_field :google_place_id, id: "google_place_idField" %>
@@ -43,11 +43,11 @@
         <div class="form-row">
           <div class="form-group col-md-6 text-center">
             <%= f.label :ticket_price, "チケット代" %>
-            <%= f.number_field :ticket_price, class: 'form-control', id: 'ticket_price_input' %>
+            <%= f.number_field :ticket_price, class: "form-control", id: "ticket_price_input" %>
           </div>
           <div class="form-group col-md-6 text-center">
             <%= f.label :drink_price, "ドリンク代" %>
-            <%= f.number_field :drink_price, class: 'form-control',value: live_record.drink_price || 600 %>
+            <%= f.number_field :drink_price, class: "form-control",value: live_record.drink_price || 600 %>
           </div>
         </div>
         <div class="form-row liveimage text-center">
@@ -67,10 +67,10 @@
         </div>
         <div class="form-group text-center">
           <%= f.label :memo, "メモ" %>
-          <%= f.text_area :memo, class: 'form-control' %>
+          <%= f.text_area :memo, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.submit "登録", class: 'btn btn-dark btn-block' %>
+          <%= f.submit "登録", class: "btn btn-dark btn-block" %>
         </div>
       <% end %>
     </div>
