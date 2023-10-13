@@ -2,12 +2,12 @@
   <div class="artist-show">
     <div class="d-flex justify-content-between mb-3">
       <div>
-        <%= link_to edit_artist_path(@artist), class: 'btn btn-primary' do %>
+        <%= link_to edit_artist_path(@artist), class: "btn btn-primary" do %>
           <i class="fas fa-edit"></i>
         <% end %>
       </div>
       <div>
-        <%= link_to artist_path(@artist), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' do %>
+        <%= link_to artist_path(@artist), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </div>
@@ -29,24 +29,24 @@
         <% end %>
       <% end %>
     </div>
-    <% if @display_attributes['ジャンル'].present? %>
+    <% if @display_attributes["ジャンル"].present? %>
       <div class="mt-2 text-center h3">
         ジャンル:
-        <%= @display_attributes['ジャンル'] %>
+        <%= @display_attributes["ジャンル"] %>
       </div>
     <% end %>
-    <% if @display_attributes['結成日'].present? || @display_attributes['初ライブ日'].present? %>
+    <% if @display_attributes["結成日"].present? || @display_attributes["初ライブ日"].present? %>
       <div class="row mt-4 justify-content-center">
-        <% if @display_attributes['結成日'].present? %>
+        <% if @display_attributes["結成日"].present? %>
           <div class="col-auto text-center h3">
             結成日:
-            <%= @display_attributes['結成日'] %> (<%= days_since(@display_attributes['結成日']) %>日目)
+            <%= @display_attributes["結成日"] %> (<%= days_since(@display_attributes["結成日"]) %>日目)
           </div>
         <% end %>
-        <% if @display_attributes['初ライブ日'].present? %>
+        <% if @display_attributes["初ライブ日"].present? %>
           <div class="col-auto text-center h3">
             初ライブ日:
-            <%= @display_attributes['初ライブ日'] %> (<%= days_since(@display_attributes['初ライブ日']) %>日目)
+            <%= @display_attributes["初ライブ日"] %> (<%= days_since(@display_attributes["初ライブ日"]) %>日目)
           </div>
         <% end %>
       </div>
@@ -64,7 +64,7 @@
           <div class="col-4 text-center" id="member_<%= member.id %>">
             <p class="text-white">
               <%= member.name %>
-              <%= link_to artist_member_path(@artist, member), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } do %>
+              <%= link_to artist_member_path(@artist, member), method: :delete, remote: true, data: { confirm: "本当に削除しますか？" } do %>
                 <i class="fas fa-trash-alt"></i>
               <% end %>
             </p>
@@ -76,10 +76,10 @@
         <% end %>
       </div>
     </div>
-    <% if @display_attributes['メモ'].present? %>
+    <% if @display_attributes["メモ"].present? %>
       <div class="mt-3 text-center h3">
         <h2>メモ</h2>
-        <%= @display_attributes['メモ'] %>
+        <%= @display_attributes["メモ"] %>
       </div>
     <% end %>
   </div>

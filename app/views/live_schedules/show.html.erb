@@ -10,11 +10,11 @@
         <div class="text-center display-4">
           ライブ予定
         </div>
-        <%= link_to @live_schedule, method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+        <%= link_to @live_schedule, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
           <i class="fas fa-trash"></i>
         <% end %>
       </div>
-      <div class="text-center mb-2" id="weather-section" data-weather-api-key="<%= ENV['weather_API'] %>" data-latitude="<%= @live_schedule.venue.latitude %>" data-longitude="<%= @live_schedule.venue.longitude %>">
+      <div class="text-center mb-2" id="weather-section" data-weather-api-key="<%= ENV["weather_API"] %>" data-latitude="<%= @live_schedule.venue.latitude %>" data-longitude="<%= @live_schedule.venue.longitude %>">
         <div id="weather-report-area"></div>
       </div>
       <div class="form-row">
@@ -89,13 +89,13 @@
         <% if @live_schedule.timetable? %>
           <div class="form-group col-md-6 text-center">
             <label>タイムテーブル画像</label>
-            <%= image_tag @live_schedule.timetable.url, size: '400x400', class: 'img-fluid' %>
+            <%= image_tag @live_schedule.timetable.url, size: "400x400", class: "img-fluid" %>
           </div>
         <% end %>
         <% if @live_schedule.announcement_image? %>
           <div class="form-group col-md-6 text-center">
             <label>告知画像</label>
-            <%= image_tag @live_schedule.announcement_image.url, size: '400x400', class: 'img-fluid' %>
+            <%= image_tag @live_schedule.announcement_image.url, size: "400x400", class: "img-fluid" %>
           </div>
         <% end %>
       </div>
@@ -113,25 +113,25 @@
 
 document.addEventListener("turbolinks:load", function() {
   resetWeatherVariables();
-  var API_KEY = $('#weather-section').data('weather-api-key');
-  var latitude = $('#weather-section').data('latitude');
-  var longitude = $('#weather-section').data('longitude');
+  var API_KEY = $("#weather-section").data("weather-api-key");
+  var latitude = $("#weather-section").data("latitude");
+  var longitude = $("#weather-section").data("longitude");
 
   if (!latitude || !longitude) {
     return;
   }
 
-  var item_id = 'lat=' + latitude + '&lon=' + longitude;
-  var url = 'https://api.openweathermap.org/data/2.5/forecast?' + item_id + '&lang=ja&units=metric&appid=' + API_KEY;
+  var item_id = "lat=" + latitude + "&lon=" + longitude;
+  var url = "https://api.openweathermap.org/data/2.5/forecast?" + item_id + "&lang=ja&units=metric&appid=" + API_KEY;
 
   $.ajax({
     url: url,
     dataType: "json",
-    type: 'GET',
+    type: "GET",
   })
   .done(function(data) {
     var insertHTML = buildWeatherReport(data);
-    $('#weather-report-area').html(insertHTML);
+    $("#weather-report-area").html(insertHTML);
   })
   .fail(function() {
   });
@@ -139,13 +139,13 @@ document.addEventListener("turbolinks:load", function() {
 
 function resetWeatherVariables() {
   targetWeather = null;
-  $('#weather-report-area').empty();
+  $("#weather-report-area").empty();
 }
 
 function buildWeatherReport(data) {
-  var liveScheduleDate = new Date($('#live-schedule-date').data('date'));
+  var liveScheduleDate = new Date($("#live-schedule-date").data("date"));
 
-  var targetTime = $('#live-time-info').data('time');
+  var targetTime = $("#live-time-info").data("time");
   var targetHour = parseInt(targetTime.split(":")[0], 10);
 
   var nearestDiff = Number.MAX_VALUE;
@@ -171,15 +171,15 @@ function buildWeatherReport(data) {
     return ;
   }
 
-  var icon = targetWeather.weather[0].icon.replace('n', 'd');
+  var icon = targetWeather.weather[0].icon.replace("n", "d");
   var precipitationProbability = targetWeather.pop ? (targetWeather.pop * 100) : 0;
 
   var html =
-  '<div class="weather-report">' +
-    '<img src="https://openweathermap.org/img/w/' + icon + '.png">' +
-    '<div class="weather-temp">' + Math.round(targetWeather.main.temp) + '℃</div>' +
-    '<div class="weather-precipitation">降水確率: ' + precipitationProbability + '%</div>' +
-  '</div>';
+  "<div class="weather-report">" +
+    "<img src="https://openweathermap.org/img/w/" + icon + ".png">" +
+    "<div class="weather-temp">" + Math.round(targetWeather.main.temp) + "℃</div>" +
+    "<div class="weather-precipitation">降水確率: " + precipitationProbability + "%</div>" +
+  "</div>";
 
   return html;
 }
