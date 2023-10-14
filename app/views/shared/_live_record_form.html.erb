@@ -5,7 +5,7 @@
         ライブ記録
       </div>
       <%= render "shared/error_messages", resource: live_record %>
-      <%= form_with model: live_record, html: { multipart: true } do |f| %>
+      <%= form_with model: live_record do |f| %>
         <div class="form-row">
           <div class="form-group col-md-6 text-center">
             <%= f.label :name, "イベント名" %>

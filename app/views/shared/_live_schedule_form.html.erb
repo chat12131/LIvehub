@@ -5,7 +5,7 @@
         ライブ予定
       </div>
       <%= render "shared/error_messages", resource: live_schedule %>
-      <%= form_with model: live_schedule, html: { multipart: true } do |f| %>
+      <%= form_with model: live_schedule do |f| %>
         <div class="form-row">
           <div class="form-group col-md-6 text-center">
             <%= f.label :name, "イベント名" %>
