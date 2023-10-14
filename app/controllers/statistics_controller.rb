@@ -52,8 +52,10 @@ class StatisticsController < ApplicationController
     @genre_counts = current_user.live_records.joins(:artist).group('artists.genre').count
 
     # 週別ライブ数（7日分のデータ）
-    @weekly_live_counts = {}
-    @weekly_live_counts = current_user.live_records.where(date: 6.months.ago..Time.zone.now).group_by { |record| record.date.wday }.transform_values(&:count)
+    @weekly_live_counts = {0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0}
+    live_counts = current_user.live_records.where(date: 6.months.ago..Time.zone.now).group_by { |record| record.date.wday }.transform_values(&:count)
+    @weekly_live_counts.merge!(live_counts)
+
 
     # グッズカテゴリ別支出
     @category_expenses = current_user.goods.joins(:category).group('categories.name').sum('goods.price * goods.quantity')

@@ -10,6 +10,8 @@ import '../ticket';
 import '../add_categories';
 import '../menber_in_artist';
 import '../goods_liverecord';
+import '../weather';
+import '../charts';
 
 // This file is automatically compiled by Webpack, along with any other files
 // present in this directory. You're encouraged to place your actual application logic in
