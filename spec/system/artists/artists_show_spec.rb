@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Artists" do
   let(:user) { create(:user) }
@@ -35,28 +35,28 @@ RSpec.describe "Artists" do
   end
 
   it "お気に入りのトグルアイコンが表示されていること" do
-    expect(page).to have_selector '.fa-heart'
+    expect(page).to have_selector ".fa-heart"
   end
 
   it "編集と削除のボタンが存在すること" do
-    expect(page).to have_selector '.fa-edit'
-    expect(page).to have_selector '.fa-trash-alt'
+    expect(page).to have_selector ".fa-edit"
+    expect(page).to have_selector ".fa-trash-alt"
   end
 
   it "お気に入りのトグルが機能すること", :js do
-    find('.fa-heart').click
-    expect(page).to have_selector '.heart-pink'
+    find(".fa-heart").click
+    expect(page).to have_selector ".heart-pink"
     visit favorites_artists_path
     expect(page).to have_content artist.name
   end
 
   context "メンバーがいる場合" do
     it "メンバーを表示が表示されることk" do
-      expect(page).to have_content 'メンバーを表示+'
+      expect(page).to have_content "メンバーを表示+"
     end
 
     it "メンバーを表示をクリックするとメンバーが表示されること", :js do
-      click_on 'メンバーを表示+'
+      click_on "メンバーを表示+"
       members.each do |member|
         expect(page).to have_content member.name
       end
@@ -64,10 +64,10 @@ RSpec.describe "Artists" do
 
     it "メンバー削除ボタンで削除できること", :js do
       member_name = members.first.name
-      click_on 'メンバーを表示+'
+      click_on "メンバーを表示+"
       within "#member_#{members.first.id}" do
         accept_alert do
-          find('.fas.fa-trash-alt').click
+          find(".fas.fa-trash-alt").click
         end
       end
       expect(page).not_to have_content(member_name)
@@ -78,7 +78,7 @@ RSpec.describe "Artists" do
     it "メンバーを表示が表示されないこと" do
       artist.members.destroy_all
       visit artist_path(artist)
-      expect(page).not_to have_content 'メンバーを表示+'
+      expect(page).not_to have_content "メンバーを表示+"
     end
   end
 end

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "MyPage" do
   let(:user) { create(:user) }
@@ -24,8 +24,8 @@ RSpec.describe "MyPage" do
       expect(page).to have_content(user.email)
     end
 
-    it 'アバターが表示されること' do
-      expect(page).to have_css('img.user-avatar')
+    it "アバターが表示されること" do
+      expect(page).to have_css("img.user-avatar")
     end
 
     it "ユーザーが編集リンクに移動できること", :js do
@@ -33,7 +33,7 @@ RSpec.describe "MyPage" do
       expect(page).to have_current_path(edit_user_registration_path)
     end
 
-    it 'アカウント削除ができること', :js do
+    it "アカウント削除ができること", :js do
       page.accept_confirm do
         click_button "アカウントを削除"
       end

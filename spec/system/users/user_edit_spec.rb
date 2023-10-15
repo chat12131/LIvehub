@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "UserEdits" do
   describe "username update" do
@@ -33,7 +33,7 @@ RSpec.describe "UserEdits" do
         expect(user.reload.email).not_to eq(new_email)
       end
 
-      it 'usernameとemailを変更できること' do
+      it "usernameとemailを変更できること" do
         fill_in "ユーザーネーム", with: "new"
         fill_in "メールアドレス", with: new_email
         fill_in "現在のパスワード", with: "password"

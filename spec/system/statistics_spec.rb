@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Statistics" do
   describe "statistics page" do
@@ -14,34 +14,34 @@ RSpec.describe "Statistics" do
       visit statistics_path
     end
 
-    it 'ライブ記録が表示されること' do
-      expect(page).to have_content('ライブ記録の総数:')
-      expect(page).to have_content('半年間のライブ数:')
-      expect(page).to have_content('今月のライブ数:')
-      expect(page).to have_content('ライブに参加したアーティスト数:')
+    it "ライブ記録が表示されること" do
+      expect(page).to have_content("ライブ記録の総数:")
+      expect(page).to have_content("半年間のライブ数:")
+      expect(page).to have_content("今月のライブ数:")
+      expect(page).to have_content("ライブに参加したアーティスト数:")
     end
 
-    it '支出情報が表示されること' do
-      expect(page).to have_content('ライブとグッズの総支出 :')
-      expect(page).to have_content('ライブの総支出 :')
-      expect(page).to have_content('グッズの総支出 :')
-      expect(page).to have_content('今月のグッズ購入数:')
+    it "支出情報が表示されること" do
+      expect(page).to have_content("ライブとグッズの総支出 :")
+      expect(page).to have_content("ライブの総支出 :")
+      expect(page).to have_content("グッズの総支出 :")
+      expect(page).to have_content("今月のグッズ購入数:")
     end
 
-    it '月別ライブ数のグラフが表示されること' do
-      expect(page).to have_selector('#monthlyLiveChart')
+    it "月別ライブ数のグラフが表示されること" do
+      expect(page).to have_selector("#monthlyLiveChart")
     end
 
-    it '曜日別のライブ数のグラフが表示されること' do
-      expect(page).to have_selector('#weeklyChart')
+    it "曜日別のライブ数のグラフが表示されること" do
+      expect(page).to have_selector("#weeklyChart")
     end
 
-    it 'ジャンル別の数のグラフが表示されること' do
-      expect(page).to have_selector('#myChart')
+    it "ジャンル別の数のグラフが表示されること" do
+      expect(page).to have_selector("#myChart")
     end
 
-    it 'グッズカテゴリー別の支出のグラフが表示されること' do
-      expect(page).to have_selector('#expenseChart')
+    it "グッズカテゴリー別の支出のグラフが表示されること" do
+      expect(page).to have_selector("#expenseChart")
     end
   end
 end

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "LiveRecord Details" do
   let(:user) { create(:user) }
@@ -56,7 +56,7 @@ RSpec.describe "LiveRecord Details" do
   end
 
   it "クリックすると正しいグッズの新規作成ページへ遷移する" do
-    click_link 'グッズ'
+    click_link "グッズ"
     expected_url = "http://www.example.com#{new_good_path(live_record_id: live_record.id)}"
     expect(page).to have_current_path(expected_url, url: true)
   end

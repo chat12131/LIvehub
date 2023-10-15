@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "LiveRecords" do
   describe "新規ライブ記録作成ページ" do
@@ -11,7 +11,7 @@ RSpec.describe "LiveRecords" do
 
     it "正常な情報でライブ記録を作成すると、記録が保存されること", :js do
       execute_script("document.querySelector('#live_record_date').value = '2023-10-01'")
-      find_by_id('venue-name-display').set("新しい会場名")
+      find_by_id("venue-name-display").set("新しい会場名")
       execute_script("window.scrollBy(0,10000)")
       click_button "登録"
 

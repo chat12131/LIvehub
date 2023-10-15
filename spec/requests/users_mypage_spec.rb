@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "MyPage" do
   describe "GET /mypage" do
@@ -9,15 +9,15 @@ RSpec.describe "MyPage" do
       get mypage_path
     end
 
-    it 'レスポンスが正しく返されること' do
+    it "レスポンスが正しく返されること" do
       expect(response).to be_successful
     end
 
-    it 'usernameが表示されること' do
+    it "usernameが表示されること" do
       expect(response.body).to include(user.username)
     end
 
-    it 'emailが表示されること' do
+    it "emailが表示されること" do
       expect(response.body).to include(user.email)
     end
   end

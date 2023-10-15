@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Goods" do
   let(:user) { create(:user) }
@@ -10,7 +10,7 @@ RSpec.describe "Goods" do
   end
 
   describe "GET /new" do
-    it 'レスポンスが正しく返されること' do
+    it "レスポンスが正しく返されること" do
       expect(response).to be_successful
     end
   end

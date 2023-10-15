@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Artists" do
   describe "GET /artists" do
@@ -20,21 +20,21 @@ RSpec.describe "Artists" do
       end
     end
 
-    it "'新規アーティスト作成'のボタンが表示されること" do
+    it "新規アーティスト作成のボタンが表示されること" do
       expect(response.body).to include("新規アーティスト作成")
     end
 
-    it "'お気に入り'のボタンが表示されること" do
+    it "お気に入りのボタンが表示されること" do
       expect(response.body).to include("お気に入り")
     end
 
-    it "各アーティストに'編集'ボタンが表示されること" do
+    it "各アーティストに編集ボタンが表示されること" do
       artists.each do |artist|
         expect(response.body).to include(edit_artist_path(artist))
       end
     end
 
-    it "各アーティストに'削除'ボタンが表示されること" do
+    it "各アーティストに削除ボタンが表示されること" do
       artists.each do |artist|
         expect(response.body).to include(artist_path(artist))
       end

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Artists" do
   let(:user) { create(:user) }
@@ -10,25 +10,25 @@ RSpec.describe "Artists" do
 
   context "正しく入力した時" do
     it "アーティストが作れること" do
-      fill_in 'アーティスト名', with: 'Sample Artist'
-      select 'ロック', from: 'ジャンル'
-      click_button '保存'
+      fill_in "アーティスト名", with: "Sample Artist"
+      select "ロック", from: "ジャンル"
+      click_button "保存"
 
-      expect(page).to have_content('Sample Artist')
+      expect(page).to have_content("Sample Artist")
     end
   end
 
   context "何も入力しない時" do
     it "アーティストが作れないこと" do
-      click_button '保存'
-      expect(page).to have_button('保存')
+      click_button "保存"
+      expect(page).to have_button("保存")
     end
   end
 
   it "「更に追加」をクリックすると、メンバーが追加されること", :js do
-    fill_in 'member-input', with: '新しいメンバー'
-    click_button '更に追加'
+    fill_in "member-input", with: "新しいメンバー"
+    click_button "更に追加"
     sleep 1
-    expect(find_field('member-input').value).to eq ''
+    expect(find_field("member-input").value).to eq ""
   end
 end
