@@ -46,6 +46,8 @@ RSpec.describe "Artists" do
   it "お気に入りのトグルが機能すること", :js do
     find('.fa-heart').click
     expect(page).to have_selector '.heart-pink'
+    visit favorites_artists_path
+    expect(page).to have_content artist.name
   end
 
   context "メンバーがいる場合" do
@@ -58,6 +60,17 @@ RSpec.describe "Artists" do
       members.each do |member|
         expect(page).to have_content member.name
       end
+    end
+
+    it "メンバー削除ボタンで削除できること", :js do
+      member_name = members.first.name
+      click_on 'メンバーを表示+'
+      within "#member_#{members.first.id}" do
+        accept_alert do
+          find('.fas.fa-trash-alt').click
+        end
+      end
+      expect(page).not_to have_content(member_name)
     end
   end
 
