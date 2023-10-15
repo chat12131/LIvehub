@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "LiveSchedules" do
   describe "GET /index" do
@@ -15,7 +15,7 @@ RSpec.describe "LiveSchedules" do
       get live_schedules_path
     end
 
-    it 'レスポンスが正しく返されること' do
+    it "レスポンスが正しく返されること" do
       expect(response).to be_successful
     end
 
@@ -27,15 +27,15 @@ RSpec.describe "LiveSchedules" do
       expect(assigns(:live_schedules)).to include(upcoming_live_schedule)
     end
 
-    it 'レスポンスに「新規作成」のリンクが含まれていること' do
-      expect(response.body).to include '新規作成'
+    it "レスポンスに「新規作成」のリンクが含まれていること" do
+      expect(response.body).to include "新規作成"
     end
 
-    it 'レスポンスに今後のライブスケジュールの名前が含まれていること' do
+    it "レスポンスに今後のライブスケジュールの名前が含まれていること" do
       expect(response.body).to include upcoming_live_schedule.name
     end
 
-    it 'レスポンスに過去のライブスケジュールの名前が含まれていないこと' do
+    it "レスポンスに過去のライブスケジュールの名前が含まれていないこと" do
       expect(response.body).not_to include past_live_schedule.name
     end
   end

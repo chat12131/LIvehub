@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Artists" do
   describe "PUT /artists/:id" do
@@ -10,7 +10,7 @@ RSpec.describe "Artists" do
       get edit_artist_path(artist)
     end
 
-    it 'レスポンスが正しく返されること' do
+    it "レスポンスが正しく返されること" do
       expect(response).to be_successful
     end
 
@@ -34,11 +34,11 @@ RSpec.describe "Artists" do
     end
 
     it "メンバーフィールドが含まれること" do
-      expect(response.body).to include 'メンバーの名前'
+      expect(response.body).to include "メンバーの名前"
     end
 
     it "「更に追加」ボタンが存在すること" do
-      expect(response.body).to include '更に追加'
+      expect(response.body).to include "更に追加"
     end
   end
 end

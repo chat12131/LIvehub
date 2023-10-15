@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "LiveSchedules" do
   describe "新規ライブ予定作成ページ" do
@@ -14,8 +14,8 @@ RSpec.describe "LiveSchedules" do
     end
 
     it "正常な情報でライブ予定を作成すると、予定が保存されること", :js do
-      execute_script("document.querySelector('#live_schedule_date').value = '2023-10-30'")
-      find_by_id('venue-name-display').set("新しい会場名")
+      execute_script("document.querySelector('#live_schedule_date').value = '2023-10-30';")
+      find_by_id("venue-name-display").set("新しい会場名")
       execute_script("window.scrollBy(0,10000)")
       click_button "登録"
 
@@ -24,7 +24,7 @@ RSpec.describe "LiveSchedules" do
 
     it "不正な情報で予定が保存されないこと", :js do
       execute_script("document.querySelector('#live_schedule_date').value = ''")
-      find_by_id('venue-name-display').set("新しい会場名")
+      find_by_id("venue-name-display").set("新しい会場名")
       execute_script("window.scrollBy(0,10000)")
       click_button "登録"
 

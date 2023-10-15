@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "homepage" do
   let(:user) { create(:user) }
@@ -7,7 +7,7 @@ RSpec.describe "homepage" do
     visit root_path
   end
 
-  it "表示内容に'Livehub'が含まれること" do
+  it "表示内容にLivehubが含まれること" do
     within(".home") do
       expect(page).to have_content "Livehub"
     end
@@ -42,28 +42,28 @@ RSpec.describe "homepage" do
       visit root_path
     end
 
-    it 'ライブ予定が正しく機能すること' do
+    it "ライブ予定が正しく機能すること" do
       within(".home") do
         click_link "ライブ予定"
       end
       expect(page).to have_current_path(live_schedules_path)
     end
 
-    it 'ライブ予定が正しく機能すること' do
+    it "ライブ予定が正しく機能すること" do
       within(".home") do
         click_link "ライブ記録"
       end
       expect(page).to have_current_path(live_records_path)
     end
 
-    it 'ライブ予定が正しく機能すること' do
+    it "ライブ予定が正しく機能すること" do
       within(".home") do
         click_link "グッズ記録"
       end
       expect(page).to have_current_path(goods_path)
     end
 
-    it 'ライブ予定が正しく機能すること' do
+    it "ライブ予定が正しく機能すること" do
       within(".home") do
         click_link "統計"
       end

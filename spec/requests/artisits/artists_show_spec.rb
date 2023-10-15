@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Artists#show" do
   let!(:user) { create(:user) }
@@ -40,7 +40,7 @@ RSpec.describe "Artists#show" do
 
   context "メンバーが存在する場合" do
     it "「メンバーを表示+」というテキストが存在すること" do
-      expect(response.body).to include 'メンバーを表示+'
+      expect(response.body).to include "メンバーを表示+"
     end
 
     it "メンバーの名前が正しく表示されていること" do
@@ -57,7 +57,7 @@ RSpec.describe "Artists#show" do
     end
 
     it "「メンバーを表示+」というテキストが存在しないこと" do
-      expect(response.body).not_to include 'メンバーを表示+'
+      expect(response.body).not_to include "メンバーを表示+"
     end
   end
 end

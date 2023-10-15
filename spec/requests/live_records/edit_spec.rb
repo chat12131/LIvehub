@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "LiveSchedules", :js do
   let!(:user) { create(:user) }
@@ -10,7 +10,7 @@ RSpec.describe "LiveSchedules", :js do
     get edit_live_record_path(live_record)
   end
 
-  it 'レスポンスが正しく返されること' do
+  it "レスポンスが正しく返されること" do
     expect(response).to be_successful
   end
 
