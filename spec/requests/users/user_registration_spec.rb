@@ -5,6 +5,12 @@ RSpec.describe "User Registrations" do
     let(:valid_attributes) { attributes_for(:user) }
     let(:invalid_attributes) { attributes_for(:user, username: "") }
 
+
+    it "正しいレスポンスが返されること" do
+      get new_user_registration_path
+      expect(response).to be_successful
+    end
+
     it "ユーザーが正常に登録されること" do
       post user_registration_path, params: { user: valid_attributes }
       expect(response).to redirect_to(root_path)
