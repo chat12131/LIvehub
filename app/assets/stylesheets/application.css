@@ -14,7 +14,7 @@
  *= require_self
  */
 
- input {
+input {
   text-align: center;
 }
 
@@ -144,15 +144,15 @@
     }
  }
 
- .weather-precipitation{
+.weather-precipitation{
   padding-bottom: 16px;
 }
 
- .mealpicture:hover {
-  cursor: pointer;
- }
+.mealpicture:hover {
+cursor: pointer;
+}
 
- @media (max-width: 1023px) {
+  @media (max-width: 1023px) {
   .artist, .artist-index, .artist-show {
     width: 99%;
   }
@@ -162,6 +162,7 @@
   .good-form{
     padding: 10px;
     margin-top: 5px;
+    border-radius: 0%;
   }
   .card {
     width: 98%;
@@ -169,7 +170,7 @@
   .spec {
     width: 100%;
   }
-}
+  }
   @media (max-width: 768px) {
     .navbar .dropdown-toggle:after {
       display: none;
