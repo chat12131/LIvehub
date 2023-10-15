@@ -31,7 +31,7 @@ class StatisticsController < ApplicationController
     @total_expense = live_total + goods_total
 
     # 今月のグッズ購入数
-    @this_month_goods_count = current_user.goods.where(date: start_of_month..start_of_next_month).sum(:quantity)
+    @this_month_goods_count = current_user.goods.where(date: start_of_month..start_of_next_month).count
 
     # メンバー別のグッズ購入ランキング
     @member_goods_ranking = current_user.goods.joins(:member).group('members.name').sum('goods.price * goods.quantity')
