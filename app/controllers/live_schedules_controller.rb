@@ -12,6 +12,7 @@ class LiveSchedulesController < ApplicationController
 
   def new
     @live_schedule = LiveSchedule.new
+    @live_schedule.ticket_status = "未購入"
     @live_schedule.build_venue
   end
 

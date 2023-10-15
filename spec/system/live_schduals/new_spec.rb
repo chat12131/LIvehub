@@ -21,5 +21,19 @@ RSpec.describe "LiveSchedules" do
 
       expect(page).to have_content("新規作成")
     end
+
+    it "不正な情報で予定が保存されないこと", :js do
+      execute_script("document.querySelector('#live_schedule_date').value = ''")
+      find_by_id('venue-name-display').set("新しい会場名")
+      execute_script("window.scrollBy(0,10000)")
+      click_button "登録"
+
+      expect(page).to have_content("保存されませんでした")
+    end
+
+    it "新しいアーティストを追加のリンクをクリックすると新しいアーティストのページへ遷移すること", :js do
+      click_link "新しいアーティストを追加"
+      expect(page).to have_current_path("/artists/new", ignore_query: true)
+    end
   end
 end

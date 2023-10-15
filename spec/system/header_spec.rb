@@ -10,22 +10,30 @@ RSpec.describe 'Header' do
     end
 
     it 'ライブ予定が正しく機能すること' do
-      first('a', text: 'ライブ予定').click
+      within('nav.navbar') do
+        first(:link, text: 'ライブ予定').click
+      end
       expect(page).to have_current_path(live_schedules_path)
     end
 
     it 'ライブ記録が正しく機能すること' do
-      first('a', text: 'ライブ記録').click
+      within('nav.navbar') do
+        first(:link, text: 'ライブ記録').click
+      end
       expect(page).to have_current_path(live_records_path)
     end
 
     it 'グッズ記録が正しく機能すること' do
-      first('a', text: 'グッズ記録').click
+      within('nav.navbar') do
+        first(:link, text: 'グッズ記録').click
+      end
       expect(page).to have_current_path(goods_path)
     end
 
     it '統計が正しく機能すること' do
-      first('a', text: '統計').click
+      within('nav.navbar') do
+        first(:link, text: '統計').click
+      end
       expect(page).to have_current_path(statistics_path)
     end
 
@@ -46,6 +54,13 @@ RSpec.describe 'Header' do
       first(:link, 'ログアウト').click
       expect(page).to have_current_path(root_path)
     end
+
+    it 'livehubでtopページに移動すること' do
+      visit mypage_path
+      click_link 'Livehub'
+      expect(page).to have_current_path(root_path)
+    end
+
   end
 
   context 'ログイン前の場合' do
@@ -54,13 +69,24 @@ RSpec.describe 'Header' do
     end
 
     it '新規登録が正しいこと' do
-      first(:link, '新規登録').click
+      within('nav.navbar') do
+        first(:link, '新規登録').click
+      end
       expect(page).to have_current_path(new_user_registration_path)
     end
 
     it 'ログインが正しいこと', :js do
-      first(:link, 'ログイン').click
+      find('.navbar-toggler').click
+      expect(page).to have_selector('#navbarNavDropdown.show')
+      within('#navbarNavDropdown') do
+        click_link 'ログイン'
+      end
       expect(page).to have_current_path(new_user_session_path)
+    end
+
+    it 'ゲストログインが正しいこと' do
+      first(:link, 'ゲストログイン').click
+      expect(page).to have_content("統計")
     end
   end
 end

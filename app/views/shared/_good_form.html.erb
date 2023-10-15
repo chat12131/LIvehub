@@ -24,7 +24,7 @@
           <%= f.label :price, "価格" %>
           <%= f.number_field :price, class: "form-control", placeholder: "1つのグッズ価格を入力" %>
         </div>
-         <%= f.fields_for :category do |cf| %>
+        <%= f.fields_for :category do |cf| %>
           <div class="form-group col-md-4" id="new-categories" style="display:none">
             <%= cf.label :name, "- 追加するカテゴリーを入力 -" %>
             <%= text_field_tag "good[new_category_name]", nil, class: "form-control" %>

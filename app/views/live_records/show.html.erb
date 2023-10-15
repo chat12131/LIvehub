@@ -30,7 +30,6 @@
             <p><%= @live_record.artist.display_name %></p>
           </div>
         <% end %>
-
         <div class="form-group col-md-4 text-center">
           <label>会場</label>
           <p>
@@ -44,14 +43,12 @@
           <label>日付</label>
           <p><%= @live_record.date %></p>
         </div>
-
         <% if @live_record.start_time.present? %>
           <div class="form-group col-md-4 text-center">
             <label>START</label>
             <p><%= @live_record.start_time.strftime("%H:%M") %></p>
           </div>
         <% end %>
-
         <% if @live_record.ticket_price.present? %>
           <div class="form-group col-md-4 text-center">
             <label>チケット代</label>

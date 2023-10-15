@@ -16,7 +16,8 @@
               <%= f.label :artist_id, "アーティスト" %>
               <%= link_to "新しいアーティストを追加", new_artist_path(from: request.fullpath), class: "btn btn-secondary btn-sm mb-1" %>
             </div>
-            <%= f.select :artist_id, current_user.artists.all.collect { |artist| [artist.display_name, artist.id] }, { include_blank: "-アーティストを選択-", selected: live_schedule.artist_id || "" }, class: "form-control" %></div>
+            <%= f.select :artist_id, current_user.artists.all.collect { |artist| [artist.display_name, artist.id] }, { include_blank: "-アーティストを選択-", selected: live_schedule.artist_id || "" }, class: "form-control" %>
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4 text-center">
@@ -50,7 +51,7 @@
           <div class="btn-radio-group d-flex justify-content-around">
             <% LiveSchedule.ticket_statuses.keys.each do |status| %>
               <label class="btn-radio col-md-3">
-                <%= f.radio_button :ticket_status, status, id: "ticket_status_#{status}", checked: status == "未購入" %>
+                <%= f.radio_button :ticket_status, status, id: "ticket_status_#{status}", checked: @live_schedule.ticket_status == status %>
                 <%= f.label "ticket_status_#{status}", status.humanize %>
               </label>
             <% end %>

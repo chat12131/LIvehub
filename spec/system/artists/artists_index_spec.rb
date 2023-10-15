@@ -27,4 +27,12 @@ RSpec.describe "Artists" do
     click_link "編集"
     expect(page).to have_current_path(edit_artist_path(artist))
   end
+
+  it "削除ボタンが存在する", :js do
+    expect(page).to have_selector(".btn-danger")
+    find(".btn-danger").click
+    page.driver.browser.switch_to.alert.accept
+    expect(page).to have_current_path artists_path
+    expect(page).not_to have_content(artist.name)
+  end
 end

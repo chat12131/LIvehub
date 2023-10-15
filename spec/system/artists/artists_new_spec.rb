@@ -25,11 +25,6 @@ RSpec.describe "Artists" do
     end
   end
 
-  it "表示されていること" do
-    expect(page).to have_field 'member-input'
-    expect(page).to have_button '更に追加'
-  end
-
   it "「更に追加」をクリックすると、メンバーが追加されること", :js do
     fill_in 'member-input', with: '新しいメンバー'
     click_button '更に追加'

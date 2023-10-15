@@ -10,6 +10,11 @@ RSpec.describe "UserEdits" do
       visit edit_user_registration_path
     end
 
+    it "ユーザーネームとメールアドレスが表示されること" do
+      expect(page).to have_field("ユーザーネーム", with: user.username)
+      expect(page).to have_field("メールアドレス", with: user.email)
+    end
+
     context "usernameのみ変更する場合" do
       it "usernameが変更できること" do
         fill_in "ユーザーネーム", with: "new"

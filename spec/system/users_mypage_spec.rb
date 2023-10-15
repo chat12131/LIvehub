@@ -6,7 +6,7 @@ RSpec.describe "MyPage" do
   context "ログイン前の場合" do
     it "マイページでログインリダイレクトされること" do
       visit mypage_path
-      expect(page).to have_current_path(new_user_session_path, ignore_query: true)
+      expect(page).to have_current_path(new_user_session_path)
     end
   end
 
@@ -26,6 +26,18 @@ RSpec.describe "MyPage" do
 
     it 'アバターが表示されること' do
       expect(page).to have_css('img.user-avatar')
+    end
+
+    it "ユーザーが編集リンクに移動できること", :js do
+      find("i.fas.fa-edit").click
+      expect(page).to have_current_path(edit_user_registration_path)
+    end
+
+    it 'アカウント削除ができること', :js do
+      page.accept_confirm do
+        click_button "アカウントを削除"
+      end
+      expect(page).to have_current_path(root_path)
     end
   end
 end

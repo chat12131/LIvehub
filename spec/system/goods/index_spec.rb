@@ -43,7 +43,7 @@ RSpec.describe "Goods" do
 
   it "グッズの編集ページに正しく遷移すること", :js do
     find(".fa-edit").click
-    expect(page).to have_current_path edit_good_path(good), ignore_query: true
+    expect(page).to have_current_path edit_good_path(good)
   end
 
   it "グッズの削除時にポップアップが表示されること", :js do

@@ -29,7 +29,7 @@
                 (<%= Venue.find(live_record.venue_id).area %>)
               <% end %>
             </p>
-             <% if live_record.ticket_price.present? %>
+            <% if live_record.ticket_price.present? %>
               <p class="mb-2 mr-3 flex-fill"><strong>チケット代:</strong> <%= live_record.ticket_price %>円</p>
             <% end %>
             <% if live_record.drink_price.present? %>

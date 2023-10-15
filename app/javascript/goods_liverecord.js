@@ -17,7 +17,7 @@ document.addEventListener('turbolinks:load', function() {
         if (data.artist && data.artist.id) {
           $artistSelector.val(data.artist.id).trigger('change');
         } else {
-          $artistSelector.val('').trigger('change'); // ここを追加
+          $artistSelector.val('').trigger('change');
           $addMemberLink.css('display', 'none');
           $memberSelector.html(`<option value=''>-アーティストを選択してください-</option>`).prop('disabled', true);
         }
@@ -25,7 +25,7 @@ document.addEventListener('turbolinks:load', function() {
       });
     } else {
       $dateField.val('');
-      $artistSelector.val('').trigger('change'); // ライブ記録が選択されていない場合の処理
+      $artistSelector.val('').trigger('change');
       $addMemberLink.css('display', 'none');
       $memberSelector.html(`<option value=''>-アーティストを選択してください-</option>`).prop('disabled', true);
     }
