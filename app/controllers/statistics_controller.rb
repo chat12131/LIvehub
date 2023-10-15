@@ -4,12 +4,14 @@ class StatisticsController < ApplicationController
   def index
     today = Time.zone.today
     this_month = today.month
+    start_of_month = Date.current.beginning_of_month
+    start_of_next_month = (Date.current + 1.month).beginning_of_month
 
     # ライブ記録の総数
     @total_live_records = current_user.live_records.count
 
     # 今月のライブ回数
-    @this_month_live_count = current_user.live_records.where("YEAR(date) = ? AND MONTH(date) = ?", Date.current.year, Date.current.month).count
+    @this_month_live_count = current_user.live_records.where(date: start_of_month..start_of_next_month).count
 
     # ライブに参加したアーティスト数
     @unique_artist_count = current_user.live_records.joins(:artist).distinct.count('artists.id')
@@ -29,7 +31,7 @@ class StatisticsController < ApplicationController
     @total_expense = live_total + goods_total
 
     # 今月のグッズ購入数
-    @this_month_goods_count = current_user.goods.where("YEAR(date) = ? AND MONTH(date) = ?", Date.current.year, Date.current.month).sum(:quantity)
+    @this_month_goods_count = current_user.goods.where(date: start_of_month..start_of_next_month).sum(:quantity)
 
     # メンバー別のグッズ購入ランキング
     @member_goods_ranking = current_user.goods.joins(:member).group('members.name').sum('goods.price * goods.quantity')
