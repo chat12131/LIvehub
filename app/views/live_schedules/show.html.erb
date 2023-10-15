@@ -59,7 +59,7 @@
         <% end %>
         <div id="live-time-info" data-time="<%= @live_schedule.start_time ? @live_schedule.start_time.strftime("%H:%M") : (@live_schedule.open_time ? @live_schedule.open_time.strftime("%H:%M") : "12:00") %>"></div>
       </div>
-      <% if @live_schedule.start_time? %>
+      <% if @live_schedule.ticket_status? %>
         <div class="form-group text-center">
           <label>チケット購入状況</label>
           <p><%= @live_schedule.ticket_status.humanize %></p>
