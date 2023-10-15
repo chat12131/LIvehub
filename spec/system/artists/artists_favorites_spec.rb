@@ -25,4 +25,17 @@ RSpec.describe "Artists" do
   it "全アーティスト一覧のリンクが存在すること" do
     expect(page).to have_link("全アーティスト一覧", href: artists_path)
   end
+
+  it "編集ボタンが正しく機能すること" do
+    click_link "編集"
+    expect(page).to have_current_path(edit_artist_path(favorite_artist))
+  end
+
+  it "削除ボタンが存在する", :js do
+    expect(page).to have_selector(".btn-danger")
+    find(".btn-danger").click
+    page.driver.browser.switch_to.alert.accept
+    expect(page).to have_current_path artists_path
+    expect(page).not_to have_content(favorite_artist.name)
+  end
 end
